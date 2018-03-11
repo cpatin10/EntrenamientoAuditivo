@@ -348,6 +348,21 @@ Prefab:
       propertyPath: m_Name
       value: White Key
       objectReference: {fileID: 0}
+    - target: {fileID: 65036696201921026, guid: dc8f25ce0486171469fc179b235337be,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65036696201921026, guid: dc8f25ce0486171469fc179b235337be,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65036696201921026, guid: dc8f25ce0486171469fc179b235337be,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc8f25ce0486171469fc179b235337be, type: 2}
   m_IsPrefabParent: 0
