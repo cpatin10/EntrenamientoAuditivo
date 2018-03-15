@@ -17,6 +17,11 @@ public class PressKey : MonoBehaviour {
 	}
 
     private void OnMouseDown() {
+        pushDown();
         FindObjectOfType<AudioManager>().Play(noteName); 
+    }
+
+    private void pushDown() {
+        transform.Translate(0f, -1f * Time.deltaTime, 0f);
     }
 }
