@@ -5,9 +5,10 @@ using UnityEngine;
 public class PressKey : MonoBehaviour {
 
     public string noteName;
+    private const float KEY_MOVEMENT = 0.5f; 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -17,11 +18,23 @@ public class PressKey : MonoBehaviour {
 	}
 
     private void OnMouseDown() {
-        pushDown();
-        FindObjectOfType<AudioManager>().Play(noteName); 
+        Press();
     }
 
-    private void pushDown() {
-        transform.Translate(0f, -1f * Time.deltaTime, 0f);
+    // Defines the action to take when a key is pressed
+    private void Press() {
+        PushDown();
+        FindObjectOfType<AudioManager>().Play(noteName);
+        Invoke("MoveUp", 2f);
+    }
+
+    // Moves the key down (-y) according to the movement previously defined to the key
+    private void PushDown() {
+        transform.position = new Vector3(transform.position.x, transform.position.y - KEY_MOVEMENT, transform.position.z);
+    }
+
+    // Moves the key up (+y) according to the movement previously defined to the key 
+    private void MoveUp() {
+        transform.position = new Vector3(transform.position.x, transform.position.y + KEY_MOVEMENT, transform.position.z);
     }
 }
