@@ -40,5 +40,9 @@ public class AudioManager : MonoBehaviour {
         }
         s.source.Play();
     }
+
+    public Sound GetSoundByID(int id) {
+        return sounds[id];
+    }
 }
     

@@ -25,7 +25,7 @@ public class PressKey : MonoBehaviour {
     private void Press() {
         PushDown();
         FindObjectOfType<AudioManager>().Play(noteName);
-        Invoke("MoveUp", 2f);
+        Invoke("MoveUp", 1.5f);
     }
 
     // Moves the key down (-y) according to the movement previously defined to the key
