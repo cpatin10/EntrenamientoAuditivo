@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &6288567 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1679808239835928, guid: c6eb8a1cf23ce6845878e17774e47282,
+    type: 2}
+  m_PrefabInternal: {fileID: 1974634959}
 --- !u!1 &34533838
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,7 +929,7 @@ GameObject:
   - component: {fileID: 1489804746}
   - component: {fileID: 1489804745}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Interval Player Temp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -938,10 +943,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1489804744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d4bd576a55af45409d53f2cbc6d87f7, type: 3}
+  m_Script: {fileID: 11500000, guid: dbd1eb148b355bc4e804cb86e208552d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   greatestInterval: 0
+  firstNote: 0
+  secondNote: 0
+  keepInterval: 0
+  reproducing: 0
+  pitchGoesUp: 0
+  reproducedInterval: 0
 --- !u!23 &1489804746
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1002,7 +1013,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1489804744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.31, y: 9.07, z: -17.26}
+  m_LocalPosition: {x: -11.8, y: 0.5, z: 18.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1041,7 +1052,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ad59261e29068ac45b9d1b1b0816f9ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1087,8 +1098,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1827619672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 9.15, z: -17.72}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.25, y: 1, z: 15.6}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -1104,6 +1115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5f350c2218b4541985d31e1f1cdfa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  piano: {fileID: 6288567}
+  whiteKey: {fileID: 1527103113479842, guid: dc8f25ce0486171469fc179b235337be, type: 2}
+  blackKey: {fileID: 1019107585872028, guid: 9cfe8c445f390c546b5df9ccdf42b5e0, type: 2}
 --- !u!1001 &1974634959
 Prefab:
   m_ObjectHideFlags: 0
@@ -1142,10 +1156,6 @@ Prefab:
     - target: {fileID: 4309925642704860, guid: c6eb8a1cf23ce6845878e17774e47282, type: 2}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1470293912652854, guid: c6eb8a1cf23ce6845878e17774e47282, type: 2}
-      propertyPath: m_Name
-      value: White Key C6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6eb8a1cf23ce6845878e17774e47282, type: 2}

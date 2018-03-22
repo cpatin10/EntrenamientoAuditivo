@@ -20,6 +20,7 @@ public class PressKey : MonoBehaviour {
 
     private void OnMouseDown() {
         Press();
+        IntervalPlayer.setKeepInterval(false);
     }
 
     // Defines the action to take when a key is pressed
@@ -43,10 +44,12 @@ public class PressKey : MonoBehaviour {
         enablePress();
     }
 
+    // Disables the ability of a user to press down a key
     private void disablePress() {
         pressed = true;
     }
 
+    // Enables the ability of a user to press down a key
     private void enablePress() {
         pressed = false;
     }

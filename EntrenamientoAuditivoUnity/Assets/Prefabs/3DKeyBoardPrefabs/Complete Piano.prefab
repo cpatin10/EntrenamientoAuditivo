@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65590765378564574}
   - component: {fileID: 23167666209472588}
   m_Layer: 0
-  m_Name: White Key
+  m_Name: F3 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 65050387023069546}
   - component: {fileID: 23306606632924998}
   m_Layer: 0
-  m_Name: White Key
+  m_Name: C5 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 65034212915362978}
   - component: {fileID: 23998881652222744}
   m_Layer: 0
-  m_Name: Black Key
+  m_Name: Db5 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 65526165386132546}
   - component: {fileID: 23008339829597584}
   m_Layer: 0
-  m_Name: White Key
+  m_Name: A2 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 65552784567012812}
   - component: {fileID: 23845056074848568}
   m_Layer: 0
-  m_Name: Black Key
+  m_Name: Gb5 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 23817988696069502}
   - component: {fileID: 114710542299217650}
   m_Layer: 0
-  m_Name: Black Key
+  m_Name: Ab4 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 65314162319617394}
   - component: {fileID: 23609152944061966}
   m_Layer: 0
-  m_Name: White Key Prefab
+  m_Name: E3 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 65600104358679328}
   - component: {fileID: 23405666647382560}
   m_Layer: 0
-  m_Name: White Key
+  m_Name: D3 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 65193897977813358}
   - component: {fileID: 23190459904941148}
   m_Layer: 0
-  m_Name: White Key Prefab
+  m_Name: B2 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 65939713674102130}
   - component: {fileID: 23813664559956318}
   m_Layer: 0
-  m_Name: White Key Prefab
+  m_Name: B5 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 65020251286351908}
   - component: {fileID: 23656764286161782}
   m_Layer: 0
-  m_Name: White Key
+  m_Name: G5 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 65473844148617392}
   - component: {fileID: 23558128149979666}
   m_Layer: 0
-  m_Name: Black Key
+  m_Name: Db3 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 65273020202986458}
   - component: {fileID: 23176191069432670}
   m_Layer: 0
-  m_Name: White Key Prefab
+  m_Name: E4 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 23070374960720848}
   - component: {fileID: 114240816912419056}
   m_Layer: 0
-  m_Name: White Key
+  m_Name: A4 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 65395309938497596}
   - component: {fileID: 23561420461932752}
   m_Layer: 0
-  m_Name: Black Key
+  m_Name: Ab2 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 65481109805572858}
   - component: {fileID: 23454613736462582}
   m_Layer: 0
-  m_Name: Black Key
+  m_Name: Db4 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 65305046963920860}
   - component: {fileID: 23705668371097394}
   m_Layer: 0
-  m_Name: White Key
+  m_Name: G3 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 65845469173623986}
   - component: {fileID: 23900096211074928}
   m_Layer: 0
-  m_Name: White Key Prefab
+  m_Name: E5 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 65919380211059680}
   - component: {fileID: 23017185539446994}
   m_Layer: 0
-  m_Name: White Key Prefab
+  m_Name: C6 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 65098091457174830}
   - component: {fileID: 23725999886252460}
   m_Layer: 0
-  m_Name: Black Key
+  m_Name: Eb3 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 65814041558209650}
   - component: {fileID: 23530404464367108}
   m_Layer: 0
-  m_Name: Black Key
+  m_Name: Bb4 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -508,7 +508,7 @@ GameObject:
   - component: {fileID: 65761651107617968}
   - component: {fileID: 23748800212015916}
   m_Layer: 0
-  m_Name: White Key Prefab
+  m_Name: B4 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 65143468704596542}
   - component: {fileID: 23455931881760656}
   m_Layer: 0
-  m_Name: White Key
+  m_Name: C4 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -574,7 +574,7 @@ GameObject:
   - component: {fileID: 65449447904183970}
   - component: {fileID: 23432187755598744}
   m_Layer: 0
-  m_Name: Black Key
+  m_Name: Ab5 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -622,7 +622,7 @@ GameObject:
   - component: {fileID: 65490672725750054}
   - component: {fileID: 23581461790529454}
   m_Layer: 0
-  m_Name: White Key
+  m_Name: G4 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -655,7 +655,7 @@ GameObject:
   - component: {fileID: 65578431510014082}
   - component: {fileID: 23596770828995070}
   m_Layer: 0
-  m_Name: Black Key
+  m_Name: Eb5 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -673,7 +673,7 @@ GameObject:
   - component: {fileID: 65047234454161502}
   - component: {fileID: 23630452019330686}
   m_Layer: 0
-  m_Name: Black Key
+  m_Name: Eb4 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -691,7 +691,7 @@ GameObject:
   - component: {fileID: 65958850616610012}
   - component: {fileID: 23593760462966410}
   m_Layer: 0
-  m_Name: White Key
+  m_Name: D5 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 65042444291629474}
   - component: {fileID: 23542770926299772}
   m_Layer: 0
-  m_Name: Black Key
+  m_Name: Bb3 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -772,7 +772,7 @@ GameObject:
   - component: {fileID: 65058242716814710}
   - component: {fileID: 23434042599538270}
   m_Layer: 0
-  m_Name: White Key Prefab
+  m_Name: B3 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -790,7 +790,7 @@ GameObject:
   - component: {fileID: 65643423584648798}
   - component: {fileID: 23737794380069876}
   m_Layer: 0
-  m_Name: Black Key
+  m_Name: Ab3 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -838,7 +838,7 @@ GameObject:
   - component: {fileID: 65454804283515332}
   - component: {fileID: 23463740434313466}
   m_Layer: 0
-  m_Name: White Key
+  m_Name: A5 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -856,7 +856,7 @@ GameObject:
   - component: {fileID: 65449269407325906}
   - component: {fileID: 23871763835298464}
   m_Layer: 0
-  m_Name: Black Key
+  m_Name: Gb4 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -889,7 +889,7 @@ GameObject:
   - component: {fileID: 65357057507520186}
   - component: {fileID: 23648885182895828}
   m_Layer: 0
-  m_Name: White Key
+  m_Name: F5 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -922,7 +922,7 @@ GameObject:
   - component: {fileID: 65683182885650940}
   - component: {fileID: 23257081167320068}
   m_Layer: 0
-  m_Name: White Key
+  m_Name: A3 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -956,7 +956,7 @@ GameObject:
   - component: {fileID: 23318880245748338}
   - component: {fileID: 114463552647221582}
   m_Layer: 0
-  m_Name: White Key
+  m_Name: D4 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -974,7 +974,7 @@ GameObject:
   - component: {fileID: 65250165951190952}
   - component: {fileID: 23668738283766918}
   m_Layer: 0
-  m_Name: Black Key
+  m_Name: Gb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -992,7 +992,7 @@ GameObject:
   - component: {fileID: 65365507826877108}
   - component: {fileID: 23210606241114930}
   m_Layer: 0
-  m_Name: White Key
+  m_Name: F4 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1010,7 +1010,7 @@ GameObject:
   - component: {fileID: 65434119014407930}
   - component: {fileID: 23304293677909804}
   m_Layer: 0
-  m_Name: White Key
+  m_Name: C3 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1028,7 +1028,7 @@ GameObject:
   - component: {fileID: 65549226549004968}
   - component: {fileID: 23410526811137564}
   m_Layer: 0
-  m_Name: Black Key
+  m_Name: Bb5 Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1284,7 +1284,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1679808239835928}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: -8.2, z: 36.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4433220229270032}

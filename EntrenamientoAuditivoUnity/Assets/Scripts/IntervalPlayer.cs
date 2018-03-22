@@ -2,25 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IntervalReproductor : MonoBehaviour {
-    static IntervalReproductor instance;
-    static AudioManager audioManager;
-    static int totalSounds;
-    static float secondNoteStartingTime = 0.8f;
+public class IntervalPlayer : MonoBehaviour
+{
+    private static IntervalPlayer instance;
+    private static AudioManager audioManager;
+    private static int totalSounds;
+    private static float secondNoteStartingTime = 0.8f;
 
-    public Interval greatestInterval = Interval.MajorSeventh;
+    public static Interval greatestInterval = Interval.MajorSeventh;
 
-    int firstNote, secondNote;
-    bool reproducing;
-    bool pitchGoesUp;
-    Interval reproducedInterval;
+    private static int firstNote, secondNote;
+    public static bool keepInterval = false;
+    private static bool reproducing;
+    private static bool pitchGoesUp;
+    private static Interval reproducedInterval;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
-        if (instance == null) {
+        if (instance == null)
+        {
             instance = this;
-        } else {
+        }
+        else
+        {
             Destroy(gameObject);
             return;
         }
@@ -29,16 +35,22 @@ public class IntervalReproductor : MonoBehaviour {
         totalSounds = audioManager.sounds.Length;
         reproducing = false;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-    private void OnMouseDown() {
-        if (!reproducing) {
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    private void OnMouseDown()
+    {
+        if (!reproducing)
+        {
             reproducing = true;
-            defineInterval();
+            if (!keepInterval)
+            {
+                defineInterval();
+            }
             reproduceFirstNote();
             Invoke("reproduceSecondtNote", secondNoteStartingTime);
 
@@ -48,24 +60,28 @@ public class IntervalReproductor : MonoBehaviour {
     }
 
     // Sets to false the reproducing varible letting the code to reproduce sound once more
-    private void enableReproduction() {
+    private void enableReproduction()
+    {
         reproducing = false;
     }
 
     // Reproduce the sound corresponding to the previously set firstNote
-    private void reproduceFirstNote() {
+    private void reproduceFirstNote()
+    {
         Sound sound = audioManager.GetSoundByID(firstNote);
         reproduceSound(sound.name);
     }
 
     // Reproduce the sound corresponding to the previously set secondNote
-    private void reproduceSecondtNote() {
+    private void reproduceSecondtNote()
+    {
         Sound sound = audioManager.GetSoundByID(secondNote);
         reproduceSound(sound.name);
     }
 
     // Reproduce the sound corresponding to the given soundName
-    private void reproduceSound(string soundName) {
+    private void reproduceSound(string soundName)
+    {
         audioManager.Play(soundName);
     }
 
@@ -73,7 +89,9 @@ public class IntervalReproductor : MonoBehaviour {
 
     // Defines the interval to reproduce
     // Sets the type of interval and the first and second note id (in sounds array) that defines the interval
-    private void defineInterval() {
+    private void defineInterval()
+    {
+        keepInterval = true;
         firstNote = Random.Range(0, totalSounds); // between 0 and totalSounds-1
         int interval = Random.Range((int)Interval.MinorSecond, (int)greatestInterval);
         secondNote = generateSecondNote(firstNote, interval);
@@ -81,37 +99,55 @@ public class IntervalReproductor : MonoBehaviour {
     }
 
     // Sets the second note according to the given interval starting at the given firstNote
-    private int generateSecondNote(int firstNote, int interval) {
+    private int generateSecondNote(int firstNote, int interval)
+    {
         int secondNote;
 
-        if (firstNote + interval >= totalSounds) {
+        if (firstNote + interval >= totalSounds)
+        {
             secondNote = firstNote - interval;
             pitchGoesUp = false;
         }
-        else if (firstNote - interval < 0) {
+        else if (firstNote - interval < 0)
+        {
             secondNote = firstNote + interval;
             pitchGoesUp = true;
         }
-        else {
+        else
+        {
             secondNote = randomizePitch(firstNote, interval);
         }
-        
+
         return secondNote;
     }
 
     // Determines wether the interval goes higher or lower in pitch for the second note
     // This is determined randomly
-    private int randomizePitch(int firstNote, int interval) {
+    private int randomizePitch(int firstNote, int interval)
+    {
         int secondNote;
         int pitch = Random.Range(0, 1);
-        if (pitch == 0) {
+        if (pitch == 0)
+        {
             secondNote = firstNote - interval;
             pitchGoesUp = false;
         }
-        else {
+        else
+        {
             secondNote = firstNote + interval;
             pitchGoesUp = true;
         }
         return secondNote;
     }
+
+    public static void setKeepInterval(bool setTo)
+    {
+        keepInterval = setTo;
+    }
+
+    public static bool getKeepInterval()
+    {
+        return keepInterval;
+    }
 }
+
