@@ -6,9 +6,10 @@ public class PlayerMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        float initialX;
-        float initialY;
-        float initialZ;
+        float initialX = 0;
+        float initialY = 0;
+        float initialZ = 0;
+        transform.position = new Vector3(initialX, initialY, initialZ);
 	}
 	
 	// Update is called once per frame
