@@ -15,7 +15,7 @@ public class IntervalPlayer : MonoBehaviour
     public static bool keepInterval = false;
     private static bool reproducing;
     private static bool pitchGoesUp;
-    private static Interval reproducedInterval;
+    private static Interval playedInterval;
 
     // Use this for initialization
     void Start()
@@ -51,36 +51,36 @@ public class IntervalPlayer : MonoBehaviour
             {
                 defineInterval();
             }
-            reproduceFirstNote();
-            Invoke("reproduceSecondtNote", secondNoteStartingTime);
+            playFirstNote();
+            Invoke("playSecondNote", secondNoteStartingTime);
 
             //****************PENDIENTE: Cambiar color en momentos que se puede y no reproducir
-            Invoke("enableReproduction", Mathf.Min(2.5f));
+            Invoke("enablePlayer", Mathf.Min(2.5f));
         }
     }
 
     // Sets to false the reproducing varible letting the code to reproduce sound once more
-    private void enableReproduction()
+    private void enablePlayer()
     {
         reproducing = false;
     }
 
     // Reproduce the sound corresponding to the previously set firstNote
-    private void reproduceFirstNote()
+    private void playFirstNote()
     {
         Sound sound = audioManager.GetSoundByID(firstNote);
-        reproduceSound(sound.name);
+        playSound(sound.name);
     }
 
     // Reproduce the sound corresponding to the previously set secondNote
-    private void reproduceSecondtNote()
+    private void playSecondNote()
     {
         Sound sound = audioManager.GetSoundByID(secondNote);
-        reproduceSound(sound.name);
+        playSound(sound.name);
     }
 
     // Reproduce the sound corresponding to the given soundName
-    private void reproduceSound(string soundName)
+    private void playSound(string soundName)
     {
         audioManager.Play(soundName);
     }
@@ -95,7 +95,7 @@ public class IntervalPlayer : MonoBehaviour
         firstNote = Random.Range(0, totalSounds); // between 0 and totalSounds-1
         int interval = Random.Range((int)Interval.MinorSecond, (int)greatestInterval);
         secondNote = generateSecondNote(firstNote, interval);
-        reproducedInterval = (Interval)interval;
+        playedInterval = (Interval)interval;
     }
 
     // Sets the second note according to the given interval starting at the given firstNote
@@ -140,14 +140,11 @@ public class IntervalPlayer : MonoBehaviour
         return secondNote;
     }
 
+    // Setter for keepInterval
     public static void setKeepInterval(bool setTo)
     {
         keepInterval = setTo;
     }
 
-    public static bool getKeepInterval()
-    {
-        return keepInterval;
-    }
 }
 
