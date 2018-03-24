@@ -22,6 +22,13 @@ public class PlayerMovement : MonoBehaviour {
 		
 	}
 
+    // Called when object is destroyed
+    private void OnDisable()
+    {
+        // Unsubscribe to event
+        IntervalPlayer.OnIntervalChange -= moveToNote;
+    }
+
     // Moves the player to a key in the piano according to its name
     public void moveToNote(string keyName) {
         // Read key position
