@@ -42,8 +42,7 @@ public class PianoDescription : MonoBehaviour {
         fillKeys();
     }
 
-    // Methods for handling piano variables
-
+    // Initialize piano variables
     private void initializePianoVariables()
     {
         pianoPositionX = piano.transform.position.x;
@@ -51,16 +50,19 @@ public class PianoDescription : MonoBehaviour {
         pianoPositionZ = piano.transform.position.z;
     }
 
+    // Gets piano position in x
     public static float getPianoPositionX()
     {
         return pianoPositionX;
     }
 
+    // Gets piano position in y
     public static float getPianoPositionY()
     {
         return pianoPositionY;
     }
 
+    // Gets piano position in z
     public static float getPianoPositionZ()
     {
         return pianoPositionZ;
@@ -134,6 +136,7 @@ public class PianoDescription : MonoBehaviour {
         addBlackeKeys(keys);
     }
 
+    // Adds black keys to pianoKeys dictionary and whiteKeys HashSet
     private static void addWhiteKeys(GameObject[] keys)
     {
         foreach (GameObject key in keys)
@@ -143,6 +146,7 @@ public class PianoDescription : MonoBehaviour {
         }
     }
 
+    // Adds black keys to pianoKeys dictionary and blackKeys HashSet
     private static void addBlackeKeys(GameObject[] keys)
     {
         foreach (GameObject key in keys)

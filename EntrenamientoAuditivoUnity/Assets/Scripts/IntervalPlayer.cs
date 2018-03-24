@@ -37,6 +37,9 @@ public class IntervalPlayer : MonoBehaviour
         audioManager = FindObjectOfType<AudioManager>();
         totalSounds = audioManager.sounds.Length;
         reproducing = false;
+
+        //Subscribes to OnPressedKey method to check when a key is pressed in the piano object
+        PressKey.OnPressedKey += changeInterval;
     }
 
     // Update is called once per frame
@@ -45,6 +48,13 @@ public class IntervalPlayer : MonoBehaviour
 
     }
 
+    // Called when behaviour becomes inactive
+    private void OnDisable()
+    {
+        PressKey.OnPressedKey -= changeInterval;
+    }
+
+    // Called when object is clicked
     private void OnMouseDown()
     {
         if (!reproducing)
@@ -95,10 +105,13 @@ public class IntervalPlayer : MonoBehaviour
     private void defineInterval()
     {
         keepInterval = true;
+
         firstNote = Random.Range(0, totalSounds); // between 0 and totalSounds-1
         int interval = Random.Range((int)Interval.MinorSecond, (int)greatestInterval);
         secondNote = generateSecondNote(firstNote, interval);
+
         tellAboutNewInterval();
+
         playedInterval = (Interval)interval;
     }
 
@@ -110,9 +123,8 @@ public class IntervalPlayer : MonoBehaviour
         {
             string firstNoteName = audioManager.GetSoundByID(firstNote).name;
 
-
+            //*****************PENDIENTE: borrar
             Debug.Log(firstNoteName);
-
 
             OnIntervalChange(firstNoteName);
         }
@@ -160,10 +172,10 @@ public class IntervalPlayer : MonoBehaviour
         return secondNote;
     }
 
-    // Setter for keepInterval
-    public static void setKeepInterval(bool setTo)
+    // Sets keepInterval to false, so that next interval is a new one
+    private static void changeInterval()
     {
-        keepInterval = setTo;
+        keepInterval = false;
     }
 
 }

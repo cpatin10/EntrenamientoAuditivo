@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PressKey : MonoBehaviour {
 
+    public delegate void PressedKey();
+    public static event PressedKey OnPressedKey;
+
     public string noteName;
     private const float KEY_MOVEMENT = 0.5f;
     private bool pressed = false;
@@ -18,9 +21,20 @@ public class PressKey : MonoBehaviour {
 		
 	}
 
+    // Called when object is clicked
     private void OnMouseDown() {
         Press();
-        IntervalPlayer.setKeepInterval(false);
+        tellAboutPressedKey();
+    }
+
+    // Verifies whether there is a subscriber to the OnPressedKey
+    // If there is any tells them that a key was pressed
+    private void tellAboutPressedKey()
+    {
+        if (OnPressedKey != null)
+        {
+            OnPressedKey();
+        }
     }
 
     // Defines the action to take when a key is pressed

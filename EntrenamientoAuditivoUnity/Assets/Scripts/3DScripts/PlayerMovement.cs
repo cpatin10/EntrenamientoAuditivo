@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour {
 		
 	}
 
-    // Called when object is destroyed
+    // Called when behaviour becomes inactive
     private void OnDisable()
     {
         // Unsubscribe to event
