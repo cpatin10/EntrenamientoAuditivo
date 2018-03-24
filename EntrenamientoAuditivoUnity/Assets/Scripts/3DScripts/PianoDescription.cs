@@ -7,26 +7,33 @@ public class PianoDescription : MonoBehaviour {
     [SerializeField] private GameObject whiteKey;
     [SerializeField] private GameObject blackKey;
 
+    // Dictionary for storing the position (x, y, z) of each key (identified by name) in the piano
+    private static Dictionary<string, Vector3> pianoKeys;
+
     // Piano position in space
     private static float pianoPositionX;
     private static float pianoPositionY;
     private static float pianoPositionZ;
 
+    // White key scale
     private static float whiteKeyScaleX;
     private static float whiteKeyScaleY;
     private static float whiteKeyScaleZ;
 
+    // Black key scale
     private static float blackKeyScaleX;
     private static float blackKeyScaleY;
     private static float blackKeyScaleZ;
 
     // Use this for initialization
     void Start ()
-    {
-        Debug.Log("Hola mundo");
+    {        
         initializePianoVariables();
         initializeWhiteKeyVariables();
         initializeBlackKeyVariables();
+        int expectedPianoSize = FindObjectOfType<AudioManager>().sounds.Length;
+        pianoKeys = new Dictionary<string, Vector3>(expectedPianoSize);
+        fillKeys();
     }
 
     // Methods for handling piano variables
@@ -99,6 +106,32 @@ public class PianoDescription : MonoBehaviour {
     public static float getBlackKeyScaleZ()
     {
         return blackKeyScaleZ;
+    }
+
+    // Methods for handling pianoKeys dictionary
+    private static void fillKeys()
+    {
+        GameObject[] whiteKeys = GameObject.FindGameObjectsWithTag("WhiteKey");
+        addListToKeys(whiteKeys);
+        GameObject[] blackKeys = GameObject.FindGameObjectsWithTag("BlackKey");
+        addListToKeys(blackKeys);
+    }
+
+    private static void addListToKeys(GameObject[] keys)
+    {
+        float x;
+        float y;
+        float z;
+        foreach (GameObject key in keys)
+        {
+            x = key.transform.position.x;
+            y = key.transform.position.y;
+            z = key.transform.position.z;
+
+            Debug.Log(x + " " + y + " " + z);
+
+            pianoKeys.Add(key.name, new Vector3(x, y, z));
+        }
     }
 
 }

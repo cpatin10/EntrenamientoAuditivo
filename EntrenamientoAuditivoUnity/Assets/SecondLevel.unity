@@ -113,25 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &6288567 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1679808239835928, guid: c6eb8a1cf23ce6845878e17774e47282,
-    type: 2}
-  m_PrefabInternal: {fileID: 1974634959}
---- !u!114 &6288569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 6288567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55c1fd76afa3eee468dd2e27dc9fe9ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  piano: {fileID: 6288567}
-  whiteKey: {fileID: 1527103113479842, guid: dc8f25ce0486171469fc179b235337be, type: 2}
-  blackKey: {fileID: 1019107585872028, guid: 9cfe8c445f390c546b5df9ccdf42b5e0, type: 2}
 --- !u!1 &34533838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,7 +1086,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1827619672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 1, z: 15.6}
+  m_LocalPosition: {x: -5.53, y: 1, z: 15.6}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1161,9 +1142,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1679808239835928, guid: c6eb8a1cf23ce6845878e17774e47282, type: 2}
-      propertyPath: m_TagString
-      value: CompletePiano
+    - target: {fileID: 4556778862814810, guid: c6eb8a1cf23ce6845878e17774e47282, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -3.22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6eb8a1cf23ce6845878e17774e47282, type: 2}
