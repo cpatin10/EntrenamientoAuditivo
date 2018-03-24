@@ -9,6 +9,9 @@ public class PianoDescription : MonoBehaviour {
 
     // Dictionary for storing the position (x, y, z) of each key (identified by name) in the piano
     private static Dictionary<string, Vector3> pianoKeys;
+    // Hashsets for storing the blackKeys and WhiteKeys names separately
+    private static HashSet<string> blackKeys;
+    private static HashSet<string> whiteKeys;
 
     // Piano position in space
     private static float pianoPositionX;
@@ -16,12 +19,12 @@ public class PianoDescription : MonoBehaviour {
     private static float pianoPositionZ;
 
     // White key scale
-    private static float whiteKeyScaleX;
+    //private static float whiteKeyScaleX;
     private static float whiteKeyScaleY;
     private static float whiteKeyScaleZ;
 
     // Black key scale
-    private static float blackKeyScaleX;
+    //private static float blackKeyScaleX;
     private static float blackKeyScaleY;
     private static float blackKeyScaleZ;
 
@@ -31,8 +34,11 @@ public class PianoDescription : MonoBehaviour {
         initializePianoVariables();
         initializeWhiteKeyVariables();
         initializeBlackKeyVariables();
+
         int expectedPianoSize = FindObjectOfType<AudioManager>().sounds.Length;
         pianoKeys = new Dictionary<string, Vector3>(expectedPianoSize);
+        whiteKeys = new HashSet<string>();
+        blackKeys = new HashSet<string>();
         fillKeys();
     }
 
@@ -60,77 +66,93 @@ public class PianoDescription : MonoBehaviour {
         return pianoPositionZ;
     }
 
-    // Methods for handling general white key variables
-
-    public void initializeWhiteKeyVariables()
+    // Initialize white keys variables
+    private void initializeWhiteKeyVariables()
     {
-        whiteKeyScaleX = whiteKey.transform.localScale.x;
+        //whiteKeyScaleX = whiteKey.transform.localScale.x;
         whiteKeyScaleY = whiteKey.transform.localScale.y;
         whiteKeyScaleZ = whiteKey.transform.localScale.z;
     }
 
-    public static float getWhiteKeyScaleX()
-    {
-        return whiteKeyScaleX;
-    }
-
-    public static float getWhiteKeyScaleY()
-    {
-        return whiteKeyScaleY;
-    }
-
+    //Returns the local scale z of a whiteKey
     public static float getWhiteKeyScaleZ()
     {
         return whiteKeyScaleZ;
     }
 
-    // Methods for handling general black key variables
-
-    public void initializeBlackKeyVariables()
+    // Initialize black keys variables
+    private void initializeBlackKeyVariables()
     {
-        blackKeyScaleX = blackKey.transform.localScale.x;
+        //blackKeyScaleX = blackKey.transform.localScale.x;
         blackKeyScaleY = blackKey.transform.localScale.y;
         blackKeyScaleZ = blackKey.transform.localScale.z;
     }
 
-    public static float getBlackeKeyScaleX()
+    // Returns the y local scale of a given key
+    public static float getKeyScaleY(string keyName)
     {
-        return blackKeyScaleX;
-    }
-
-    public static float getBlackKeyScaleY()
-    {
-        return blackKeyScaleY;
-    }
-
-    public static float getBlackKeyScaleZ()
-    {
-        return blackKeyScaleZ;
-    }
-
-    // Methods for handling pianoKeys dictionary
-    private static void fillKeys()
-    {
-        GameObject[] whiteKeys = GameObject.FindGameObjectsWithTag("WhiteKey");
-        addListToKeys(whiteKeys);
-        GameObject[] blackKeys = GameObject.FindGameObjectsWithTag("BlackKey");
-        addListToKeys(blackKeys);
-    }
-
-    private static void addListToKeys(GameObject[] keys)
-    {
-        float x;
-        float y;
-        float z;
-        foreach (GameObject key in keys)
+        if (whiteKeys.Contains(keyName))
         {
-            x = key.transform.position.x;
-            y = key.transform.position.y;
-            z = key.transform.position.z;
-            pianoKeys.Add(key.name, new Vector3(x, y, z));
+            return whiteKeyScaleY;
+        }
+        else if (blackKeys.Contains(keyName))
+        {
+            return blackKeyScaleY;
+        }
+        else
+        {
+            Debug.LogWarning("Key is not black or white key");
+            return 0;
         }
     }
 
+    // Returns the z local scale of a given key
+    public static float getKeyScaleZ(string keyName)
+    {
+
+        if (whiteKeys.Contains(keyName))
+        {
+            return whiteKeyScaleZ;
+        }
+        else if (blackKeys.Contains(keyName))
+        {
+            return blackKeyScaleZ;
+        }
+        else
+        {
+            Debug.LogWarning("Key is not black or white key");
+            return 0;
+        }
+    }
+
+    // Filling data structures wiht keys information
+    private static void fillKeys()
+    {
+        GameObject[] keys = GameObject.FindGameObjectsWithTag("WhiteKey");
+        addWhiteKeys(keys);
+        keys = GameObject.FindGameObjectsWithTag("BlackKey");
+        addBlackeKeys(keys);
+    }
+
+    private static void addWhiteKeys(GameObject[] keys)
+    {
+        foreach (GameObject key in keys)
+        {
+            whiteKeys.Add(key.name);
+            pianoKeys.Add(key.name, new Vector3(key.transform.position.x, key.transform.position.y, key.transform.position.z));
+        }
+    }
+
+    private static void addBlackeKeys(GameObject[] keys)
+    {
+        foreach (GameObject key in keys)
+        {
+            blackKeys.Add(key.name);
+            pianoKeys.Add(key.name, new Vector3(key.transform.position.x, key.transform.position.y, key.transform.position.z));
+        }
+    }
+
+    // Returns the position x, y, z in a Vector3 of the specified key
     public static Vector3 getKeyPosition(string keyName)
     {
         if (!pianoKeys.ContainsKey(keyName))

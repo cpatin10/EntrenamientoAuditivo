@@ -109,6 +109,11 @@ public class IntervalPlayer : MonoBehaviour
         if (OnIntervalChange != null)
         {
             string firstNoteName = audioManager.GetSoundByID(firstNote).name;
+
+
+            Debug.Log(firstNoteName);
+
+
             OnIntervalChange(firstNoteName);
         }
     }
