@@ -133,6 +133,11 @@ public class PianoDescription : MonoBehaviour {
 
     public static Vector3 getKeyPosition(string keyName)
     {
+        if (!pianoKeys.ContainsKey(keyName))
+        {
+            Debug.LogWarning("KeyName does not exist on pianoKeysDictionary");
+            return new Vector3();
+        }
         return pianoKeys[keyName];
     }
 

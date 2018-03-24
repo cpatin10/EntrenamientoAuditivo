@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class IntervalPlayer : MonoBehaviour
 {
+    // Observer pattern. Sets an event for when a new interval is set
+    public delegate void setInterval(string firstNoteName);
+    public static event setInterval OnIntervalChange;
+
     private static IntervalPlayer instance;
     private static AudioManager audioManager;
     private static int totalSounds;
     private static float secondNoteStartingTime = 0.8f;
 
-    public static Interval greatestInterval = Interval.MajorSeventh;
+    private static Interval greatestInterval = Interval.MajorSeventh;
 
     private static int firstNote, secondNote;
     private static bool keepInterval = false;
@@ -20,7 +24,6 @@ public class IntervalPlayer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         if (instance == null)
         {
             instance = this;
@@ -95,7 +98,19 @@ public class IntervalPlayer : MonoBehaviour
         firstNote = Random.Range(0, totalSounds); // between 0 and totalSounds-1
         int interval = Random.Range((int)Interval.MinorSecond, (int)greatestInterval);
         secondNote = generateSecondNote(firstNote, interval);
+        tellAboutNewInterval();
         playedInterval = (Interval)interval;
+    }
+
+    // Verifies whether there is a subscriber to the OnIntervalChange
+    // If there is any tells them about the new defined interval
+    private void tellAboutNewInterval()
+    {
+        if (OnIntervalChange != null)
+        {
+            string firstNoteName = audioManager.GetSoundByID(firstNote).name;
+            OnIntervalChange(firstNoteName);
+        }
     }
 
     // Sets the second note according to the given interval starting at the given firstNote

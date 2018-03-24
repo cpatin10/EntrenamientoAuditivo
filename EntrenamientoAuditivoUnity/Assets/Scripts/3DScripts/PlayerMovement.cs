@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour {
         float initialY = PianoDescription.getPianoPositionY();
         float initialZ = PianoDescription.getPianoPositionZ() - PianoDescription.getWhiteKeyScaleZ();        
         transform.position = new Vector3(initialX, initialY, initialZ);
+
+        // Subscribes class to event OnIntervalChange in the IntervalPlayer script
+        IntervalPlayer.OnIntervalChange += moveToNote;
 	}
 	
 	// Update is called once per frame
@@ -20,6 +23,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
     public void moveToNote(string keyName) {
-
+        Vector3 keyPosition = PianoDescription.getKeyPosition(keyName);
+        transform.position = keyPosition;
     }
 }
