@@ -1021,7 +1021,7 @@ GameObject:
   - component: {fileID: 1827619677}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1141,10 +1141,6 @@ Prefab:
     - target: {fileID: 4309925642704860, guid: c6eb8a1cf23ce6845878e17774e47282, type: 2}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4556778862814810, guid: c6eb8a1cf23ce6845878e17774e47282, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -3.22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6eb8a1cf23ce6845878e17774e47282, type: 2}

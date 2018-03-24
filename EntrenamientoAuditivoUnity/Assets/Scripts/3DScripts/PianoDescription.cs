@@ -127,11 +127,13 @@ public class PianoDescription : MonoBehaviour {
             x = key.transform.position.x;
             y = key.transform.position.y;
             z = key.transform.position.z;
-
-            Debug.Log(x + " " + y + " " + z);
-
             pianoKeys.Add(key.name, new Vector3(x, y, z));
         }
+    }
+
+    public static Vector3 getKeyPosition(string keyName)
+    {
+        return pianoKeys[keyName];
     }
 
 }

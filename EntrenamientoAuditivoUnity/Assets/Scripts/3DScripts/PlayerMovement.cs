@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour {
 		
 	}
 
-    private void moveToNote(string noteName) {
+    public void moveToNote(string keyName) {
 
     }
 }
