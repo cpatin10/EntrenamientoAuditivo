@@ -118,6 +118,20 @@ GameObject:
   m_PrefabParentObject: {fileID: 1679808239835928, guid: c6eb8a1cf23ce6845878e17774e47282,
     type: 2}
   m_PrefabInternal: {fileID: 1974634959}
+--- !u!114 &6288569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 6288567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c1fd76afa3eee468dd2e27dc9fe9ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  piano: {fileID: 6288567}
+  whiteKey: {fileID: 1527103113479842, guid: dc8f25ce0486171469fc179b235337be, type: 2}
+  blackKey: {fileID: 1019107585872028, guid: 9cfe8c445f390c546b5df9ccdf42b5e0, type: 2}
 --- !u!1 &34533838
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,13 +960,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd1eb148b355bc4e804cb86e208552d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  greatestInterval: 0
-  firstNote: 0
-  secondNote: 0
-  keepInterval: 0
-  reproducing: 0
-  pitchGoesUp: 0
-  reproducedInterval: 0
 --- !u!23 &1489804746
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1115,9 +1122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5f350c2218b4541985d31e1f1cdfa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piano: {fileID: 6288567}
-  whiteKey: {fileID: 1527103113479842, guid: dc8f25ce0486171469fc179b235337be, type: 2}
-  blackKey: {fileID: 1019107585872028, guid: 9cfe8c445f390c546b5df9ccdf42b5e0, type: 2}
 --- !u!1001 &1974634959
 Prefab:
   m_ObjectHideFlags: 0
@@ -1156,6 +1160,10 @@ Prefab:
     - target: {fileID: 4309925642704860, guid: c6eb8a1cf23ce6845878e17774e47282, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679808239835928, guid: c6eb8a1cf23ce6845878e17774e47282, type: 2}
+      propertyPath: m_TagString
+      value: CompletePiano
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6eb8a1cf23ce6845878e17774e47282, type: 2}

@@ -12,7 +12,7 @@ public class IntervalPlayer : MonoBehaviour
     public static Interval greatestInterval = Interval.MajorSeventh;
 
     private static int firstNote, secondNote;
-    public static bool keepInterval = false;
+    private static bool keepInterval = false;
     private static bool reproducing;
     private static bool pitchGoesUp;
     private static Interval playedInterval;
