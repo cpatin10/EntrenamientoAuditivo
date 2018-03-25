@@ -72,6 +72,9 @@ public class AnswerManager : MonoBehaviour {
 
                 Debug.Log("No match");
             }
+
+            // ******************PENDIENTE: almacenar información de tiempo y respuesta
+
             thereIsQuestion = false;
         }            
     }    

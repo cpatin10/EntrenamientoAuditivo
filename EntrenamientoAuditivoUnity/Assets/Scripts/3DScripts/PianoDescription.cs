@@ -8,7 +8,7 @@ public class PianoDescription : MonoBehaviour {
     [SerializeField] private GameObject blackKey;
 
     // Dictionary for storing the position (x, y, z) of each key (identified by name) in the piano
-    private static Dictionary<string, Vector3> pianoKeys;
+    private static Dictionary<string, GameObject> pianoKeys;
     // Hashsets for storing the blackKeys and WhiteKeys names separately
     private static HashSet<string> blackKeys;
     private static HashSet<string> whiteKeys;
@@ -36,7 +36,7 @@ public class PianoDescription : MonoBehaviour {
         initializeBlackKeyVariables();
 
         int expectedPianoSize = FindObjectOfType<AudioManager>().sounds.Length;
-        pianoKeys = new Dictionary<string, Vector3>(expectedPianoSize);
+        pianoKeys = new Dictionary<string, GameObject>(expectedPianoSize);
         whiteKeys = new HashSet<string>();
         blackKeys = new HashSet<string>();
         fillKeys();
@@ -142,7 +142,7 @@ public class PianoDescription : MonoBehaviour {
         foreach (GameObject key in keys)
         {
             whiteKeys.Add(key.name);
-            pianoKeys.Add(key.name, new Vector3(key.transform.position.x, key.transform.position.y, key.transform.position.z));
+            pianoKeys.Add(key.name, key);
         }
     }
 
@@ -152,7 +152,7 @@ public class PianoDescription : MonoBehaviour {
         foreach (GameObject key in keys)
         {
             blackKeys.Add(key.name);
-            pianoKeys.Add(key.name, new Vector3(key.transform.position.x, key.transform.position.y, key.transform.position.z));
+            pianoKeys.Add(key.name, key);
         }
     }
 
@@ -164,7 +164,20 @@ public class PianoDescription : MonoBehaviour {
             Debug.LogWarning("KeyName does not exist on pianoKeysDictionary");
             return new Vector3();
         }
-        return pianoKeys[keyName];
+        float x = pianoKeys[keyName].transform.position.x;
+        float y = pianoKeys[keyName].transform.position.y;
+        float z = pianoKeys[keyName].transform.position.z;
+        return new Vector3(x, y, z);
     }
 
+    // Returns the corresponding GameObject for the specified key
+    public static GameObject getKeyObject(string keyName)
+    {
+        if (!pianoKeys.ContainsKey(keyName))
+        {
+            Debug.LogWarning("KeyName does not exist on pianoKeysDictionary");
+            return null;
+        }
+        return pianoKeys[keyName];
+    }
 }
