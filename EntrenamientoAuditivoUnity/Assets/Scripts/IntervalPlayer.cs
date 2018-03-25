@@ -5,7 +5,7 @@ using UnityEngine;
 public class IntervalPlayer : MonoBehaviour
 {
     // Observer pattern. Sets an event for when a new interval is set
-    public delegate void setInterval(string firstNoteName);
+    public delegate void setInterval(string noteName);
     public static event setInterval OnIntervalChange;
 
     private static IntervalPlayer instance;
@@ -15,7 +15,10 @@ public class IntervalPlayer : MonoBehaviour
 
     private static Interval greatestInterval = Interval.MajorSeventh;
 
-    private static int firstNote, secondNote;
+   // private static int firstNote, secondNote;
+
+    private static string firstNoteName, secondNoteName;
+
     private static bool keepInterval = false;
     private static bool reproducing;
     private static bool pitchGoesUp;
@@ -81,21 +84,13 @@ public class IntervalPlayer : MonoBehaviour
     // Reproduce the sound corresponding to the previously set firstNote
     private void playFirstNote()
     {
-        Sound sound = audioManager.GetSoundByID(firstNote);
-        playSound(sound.name);
+        audioManager.Play(firstNoteName);
     }
 
     // Reproduce the sound corresponding to the previously set secondNote
     private void playSecondNote()
     {
-        Sound sound = audioManager.GetSoundByID(secondNote);
-        playSound(sound.name);
-    }
-
-    // Reproduce the sound corresponding to the given soundName
-    private void playSound(string soundName)
-    {
-        audioManager.Play(soundName);
+        audioManager.Play(secondNoteName);
     }
 
     //*********PENDIENTE: la generación de intervalo debe cambiar de acuerdo a los datos recolectados
@@ -106,9 +101,10 @@ public class IntervalPlayer : MonoBehaviour
     {
         keepInterval = true;
 
-        firstNote = Random.Range(0, totalSounds); // between 0 and totalSounds-1
+        int firstNote = Random.Range(0, totalSounds); // between 0 and totalSounds-1
+        firstNoteName = audioManager.GetSoundByID(firstNote).name;
         int interval = Random.Range((int)Interval.MinorSecond, (int)greatestInterval);
-        secondNote = generateSecondNote(firstNote, interval);
+        generateSecondNote(firstNote, interval);
 
         tellAboutNewInterval();
 
@@ -121,8 +117,6 @@ public class IntervalPlayer : MonoBehaviour
     {
         if (OnIntervalChange != null)
         {
-            string firstNoteName = audioManager.GetSoundByID(firstNote).name;
-
             //*****************PENDIENTE: borrar
             Debug.Log(firstNoteName);
 
@@ -131,7 +125,7 @@ public class IntervalPlayer : MonoBehaviour
     }
 
     // Sets the second note according to the given interval starting at the given firstNote
-    private int generateSecondNote(int firstNote, int interval)
+    private void generateSecondNote(int firstNote, int interval)
     {
         int secondNote;
 
@@ -150,7 +144,7 @@ public class IntervalPlayer : MonoBehaviour
             secondNote = randomizePitch(firstNote, interval);
         }
 
-        return secondNote;
+        secondNoteName = audioManager.GetSoundByID(secondNote).name;
     }
 
     // Determines wether the interval goes higher or lower in pitch for the second note
