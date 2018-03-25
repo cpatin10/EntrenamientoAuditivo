@@ -19,9 +19,6 @@ public class IntervalPlayer : MonoBehaviour
     // Defines when the second note should be reproduced so that it does not interfere with the first note
     private static readonly float SECOND_NOTE_STARTING_TIME = 0.8f;
 
-    // Determines the maximum interval that should be used in the game, by default is the major seventh
-    private static Interval greatestInterval = Interval.MajorSeventh;
-
     // Information about the interval that is being played
     private static string firstNoteName, secondNoteName;
     private static Interval playedInterval;
@@ -30,6 +27,9 @@ public class IntervalPlayer : MonoBehaviour
     private static bool keepInterval = false;
     // Determines if an interval is currently being played
     private static bool reproducing;
+
+    // Determines the maximum interval that should be used in the game, by default is the major seventh
+    [SerializeField] private Interval greatestInterval = Interval.MajorSeventh;
 
     // Use this for initialization
     void Start()
@@ -112,7 +112,7 @@ public class IntervalPlayer : MonoBehaviour
 
         int firstNote = Random.Range(0, totalSounds); // between 0 and totalSounds-1
         firstNoteName = audioManager.GetSoundByID(firstNote).name;
-        int interval = Random.Range((int)Interval.MinorSecond, (int)greatestInterval);
+        int interval = Random.Range((int)Interval.MinorSecond, (int)greatestInterval + 1);
         generateSecondNote(firstNote, interval);
 
         tellAboutNewInterval();
@@ -170,14 +170,10 @@ public class IntervalPlayer : MonoBehaviour
         if (pitch == 0)
         {
             secondNote = firstNote - interval;
-
-            Debug.Log("lower");
         }
         else
         {
             secondNote = firstNote + interval;
-
-            Debug.Log("higher");
         }
         return secondNote;
     }
