@@ -8,21 +8,27 @@ public class IntervalPlayer : MonoBehaviour
     public delegate void setInterval(string noteName);
     public static event setInterval OnIntervalChange;
 
+    // Instance used for singleton pattern
     private static IntervalPlayer instance;
-    private static AudioManager audioManager;
-    private static int totalSounds;
-    private static float secondNoteStartingTime = 0.8f;
 
+    // AudioManager instance needed for reproducing the notes
+    private static AudioManager audioManager;
+    // Defines how many sounds (notes) the game currently has
+    private static int totalSounds;
+    // Defines when the second note should be reproduced so that it does not interfere with the first note
+    private static readonly float SECOND_NOTE_STARTING_TIME = 0.8f;
+
+    // Determines the maximum interval that should be used in the game, by default is the major seventh
     private static Interval greatestInterval = Interval.MajorSeventh;
 
-   // private static int firstNote, secondNote;
-
+    // Information about the interval that is being played
     private static string firstNoteName, secondNoteName;
-
-    private static bool keepInterval = false;
-    private static bool reproducing;
-    private static bool pitchGoesUp;
     private static Interval playedInterval;
+
+    // Determines whether a new interval should be defined or to continue with the current one
+    private static bool keepInterval = false;
+    // Determines if an interval is currently being played
+    private static bool reproducing;
 
     // Use this for initialization
     void Start()
@@ -68,7 +74,7 @@ public class IntervalPlayer : MonoBehaviour
                 defineInterval();
             }
             playFirstNote();
-            Invoke("playSecondNote", secondNoteStartingTime);
+            Invoke("playSecondNote", SECOND_NOTE_STARTING_TIME);
 
             //****************PENDIENTE: Cambiar color en momentos que se puede y no reproducir
             Invoke("enablePlayer", Mathf.Min(2.5f));
@@ -132,12 +138,10 @@ public class IntervalPlayer : MonoBehaviour
         if (firstNote + interval >= totalSounds)
         {
             secondNote = firstNote - interval;
-            pitchGoesUp = false;
         }
         else if (firstNote - interval < 0)
         {
             secondNote = firstNote + interval;
-            pitchGoesUp = true;
         }
         else
         {
@@ -156,12 +160,10 @@ public class IntervalPlayer : MonoBehaviour
         if (pitch == 0)
         {
             secondNote = firstNote - interval;
-            pitchGoesUp = false;
         }
         else
         {
             secondNote = firstNote + interval;
-            pitchGoesUp = true;
         }
         return secondNote;
     }
