@@ -6,7 +6,8 @@ public class IntervalPlayer : MonoBehaviour
 {
     // Observer pattern. Sets an event for when a new interval is set
     public delegate void setInterval(string noteName);
-    public static event setInterval OnIntervalChange;
+    public static event setInterval OnFirstNoteChange;
+    public static event setInterval OnSecondNoteChange;
 
     // Instance used for singleton pattern
     private static IntervalPlayer instance;
@@ -33,6 +34,7 @@ public class IntervalPlayer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // Singleton pattern
         if (instance == null)
         {
             instance = this;
@@ -47,7 +49,7 @@ public class IntervalPlayer : MonoBehaviour
         totalSounds = audioManager.sounds.Length;
         reproducing = false;
 
-        //Subscribes to OnPressedKey method to check when a key is pressed in the piano object
+        //Subscribes to OnPressedKey (from PressKey script) method to check when a key is pressed in the piano object
         PressKey.OnPressedKey += changeInterval;
     }
 
@@ -58,8 +60,9 @@ public class IntervalPlayer : MonoBehaviour
     }
 
     // Called when behaviour becomes inactive
-    private void OnDisable()
+    void OnDisable()
     {
+        // Unsubscribes to OnPressedKey method
         PressKey.OnPressedKey -= changeInterval;
     }
 
@@ -117,16 +120,23 @@ public class IntervalPlayer : MonoBehaviour
         playedInterval = (Interval)interval;
     }
 
-    // Verifies whether there is a subscriber to the OnIntervalChange
+    // Verifies whether there is a subscriber to the OnFirstNoteChange and OnSecondNoteChange
     // If there is any tells them about the new defined interval
     private void tellAboutNewInterval()
     {
-        if (OnIntervalChange != null)
+        if (OnFirstNoteChange != null)
         {
             //*****************PENDIENTE: borrar
-            Debug.Log(firstNoteName);
+            Debug.Log("1ra nota: " + firstNoteName);
 
-            OnIntervalChange(firstNoteName);
+            OnFirstNoteChange(firstNoteName);
+        }
+        if (OnSecondNoteChange != null)
+        {
+            //*****************PENDIENTE: borrar
+            Debug.Log("2da nota: " + secondNoteName);
+
+            OnSecondNoteChange(secondNoteName);
         }
     }
 
@@ -156,14 +166,18 @@ public class IntervalPlayer : MonoBehaviour
     private int randomizePitch(int firstNote, int interval)
     {
         int secondNote;
-        int pitch = Random.Range(0, 1);
+        int pitch = Random.Range(0, 2);
         if (pitch == 0)
         {
             secondNote = firstNote - interval;
+
+            Debug.Log("lower");
         }
         else
         {
             secondNote = firstNote + interval;
+
+            Debug.Log("higher");
         }
         return secondNote;
     }

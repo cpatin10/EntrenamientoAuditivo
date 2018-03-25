@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class PressKey : MonoBehaviour {
 
+    // Observer pattern. Sets an event for when a key is pressed
     public delegate void PressedKey();
     public static event PressedKey OnPressedKey;
+    public delegate void PressedKeyIdentification(string keyName);
+    public static event PressedKeyIdentification OnPressedKeyIdentify;
 
-    public string noteName;
+    public string keyName;
     private const float KEY_MOVEMENT = 0.5f;
     private bool pressed = false;
 
     // Use this for initialization
     void Start () {
-		
+        keyName = name;
 	}
 	
 	// Update is called once per frame
@@ -35,13 +38,17 @@ public class PressKey : MonoBehaviour {
         {
             OnPressedKey();
         }
+        if (OnPressedKeyIdentify != null)
+        {
+            OnPressedKeyIdentify(keyName);
+        }
     }
 
     // Defines the action to take when a key is pressed
     private void Press() {
         if (!pressed) {
             PushDown();
-            FindObjectOfType<AudioManager>().Play(noteName);
+            FindObjectOfType<AudioManager>().Play(keyName);
             Invoke("MoveUp", 1.5f);
         }
     }

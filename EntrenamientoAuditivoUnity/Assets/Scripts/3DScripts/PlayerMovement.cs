@@ -13,8 +13,8 @@ public class PlayerMovement : MonoBehaviour {
         float initialZ = PianoDescription.getPianoPositionZ() - PianoDescription.getWhiteKeyScaleZ();        
         transform.position = new Vector3(initialX, initialY, initialZ);
 
-        // Subscribes class to event OnIntervalChange in the IntervalPlayer script
-        IntervalPlayer.OnIntervalChange += moveToNote;
+        // Subscribes class to event OnFirstNoteChange (from IntervalPlayer script) in the IntervalPlayer script
+        IntervalPlayer.OnFirstNoteChange += moveToNote;
 	}
 	
 	// Update is called once per frame
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour {
     private void OnDisable()
     {
         // Unsubscribe to event
-        IntervalPlayer.OnIntervalChange -= moveToNote;
+        IntervalPlayer.OnFirstNoteChange -= moveToNote;
     }
 
     // Moves the player to a key in the piano according to its name

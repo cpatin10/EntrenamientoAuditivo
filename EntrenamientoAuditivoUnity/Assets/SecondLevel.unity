@@ -1022,6 +1022,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1684962911}
   - component: {fileID: 1684962912}
+  - component: {fileID: 1684962913}
   m_Layer: 0
   m_Name: GeneralScriptingObject
   m_TagString: Untagged
@@ -1056,6 +1057,17 @@ MonoBehaviour:
   piano: {fileID: 232352620}
   whiteKey: {fileID: 1527103113479842, guid: dc8f25ce0486171469fc179b235337be, type: 2}
   blackKey: {fileID: 1019107585872028, guid: 9cfe8c445f390c546b5df9ccdf42b5e0, type: 2}
+--- !u!114 &1684962913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1684962910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a605521acb0850f4ea4e9f012a8ec625, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1827619672
 GameObject:
   m_ObjectHideFlags: 0
