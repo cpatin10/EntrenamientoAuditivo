@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class IntervalPlayer : MonoBehaviour
 {
+    // Total time given to play the complete interval
+    private static readonly float TOTAL_INTERVAL_TIME = 2.5f;
+
     // Observer pattern. Sets an event for when a new interval is set
-    public delegate void setInterval(string noteName);
-    public static event setInterval OnFirstNoteChange;
-    public static event setInterval OnSecondNoteChange;
+    public delegate void SetInterval(string noteName);
+    public static event SetInterval OnFirstNoteChange;
+    public static event SetInterval OnSecondNoteChange;
+
+    // Observer pattern. Sets an event for when an interval plays something
+    public delegate void PlayedInterval();
+    public static event PlayedInterval OnPlayedSecondNote;
 
     // Instance used for singleton pattern
     private static IntervalPlayer instance;
@@ -53,12 +60,6 @@ public class IntervalPlayer : MonoBehaviour
         PressKey.OnPressedKey += changeInterval;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     // Called when behaviour becomes inactive
     void OnDisable()
     {
@@ -80,7 +81,8 @@ public class IntervalPlayer : MonoBehaviour
             Invoke("playSecondNote", SECOND_NOTE_STARTING_TIME);
 
             //****************PENDIENTE: Cambiar color en momentos que se puede y no reproducir
-            Invoke("enablePlayer", Mathf.Min(2.5f));
+
+            Invoke("enablePlayer", TOTAL_INTERVAL_TIME);
         }
     }
 
@@ -100,6 +102,17 @@ public class IntervalPlayer : MonoBehaviour
     private void playSecondNote()
     {
         audioManager.Play(secondNoteName);
+        tellAboutPlayedSecondNote();
+    }
+
+    // Verifies whether there is a subscriber to the tellAboutPlayedSecondNote
+    // If there is any tells them that the second note was played
+    private void tellAboutPlayedSecondNote()
+    {
+        if (OnPlayedSecondNote != null)
+        {
+            OnPlayedSecondNote();
+        }
     }
 
     //*********PENDIENTE: la generación de intervalo debe cambiar de acuerdo a los datos recolectados

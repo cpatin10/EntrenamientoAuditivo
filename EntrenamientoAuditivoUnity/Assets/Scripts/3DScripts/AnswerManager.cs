@@ -35,6 +35,8 @@ public class AnswerManager : MonoBehaviour
 
         // Subscribes to OnSecondNoteChange (from IntervalPlayer script) to receive the second note when a new interval is set
         IntervalPlayer.OnSecondNoteChange += receiveExpectedNote;
+        // Subscribes to OnPlayedSecondNote (from IntervalPlayer script) to check when the second note of an interval is being played
+        IntervalPlayer.OnPlayedSecondNote += resetTimer;
         // Subscribes to OnPressedKey (from PressKey script) to check when a key is pressed in the piano object
         PressKey.OnPressedKeyIdentify += processAnswer;
     }
@@ -44,6 +46,7 @@ public class AnswerManager : MonoBehaviour
     {
         // Unsubscribes to events
         IntervalPlayer.OnSecondNoteChange -= receiveExpectedNote;
+        IntervalPlayer.OnPlayedSecondNote -= resetTimer;
         PressKey.OnPressedKeyIdentify -= processAnswer;
     }
 
@@ -54,24 +57,27 @@ public class AnswerManager : MonoBehaviour
         thereIsQuestion = true;
     }
 
-    // *****************PENDIENTE: asignar puntos, medir tiempo, almacenar info,
+    // *****************PENDIENTE: asignar puntos, almacenar info,
     // Process a given answer by the user when a key is pressed
     private static void processAnswer(string inputNote)
     {
         if (thereIsQuestion)
         {
+            float timeToAnswer = Timer.getTimeSinceIntervalStart();
             if (answerMatchs(inputNote))
             {
-                // **************PENDIENTE: asignar puntos
 
-                Debug.Log("Match");
+                // **************PENDIENTE: asignar puntos
+                
             }
             else
             {
-                Debug.Log("No match");
                 tellAboutIncorrectInput(inputNote);
             }
             tellAboutProcessedInput();
+
+            Debug.Log(timeToAnswer);
+
             // ******************PENDIENTE: almacenar información de tiempo y respuesta
 
             thereIsQuestion = false;
@@ -106,5 +112,11 @@ public class AnswerManager : MonoBehaviour
         {
             OnIncorrectInput(inputNote);
         }
+    }
+
+    // Resets the timer, in order to measure the time a player takes to answer a question
+    private static void resetTimer()
+    {
+        Timer.resetQuestionStartTime();
     }
 }
