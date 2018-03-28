@@ -947,7 +947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd1eb148b355bc4e804cb86e208552d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  greatestInterval: 2
+  greatestInterval: 11
 --- !u!23 &1489804746
 MeshRenderer:
   m_ObjectHideFlags: 0
