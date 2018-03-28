@@ -4,37 +4,22 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour {
 
-    private static float questionStartTime;
-
-    // Instance used for singleton pattern
-    private static Timer instance;
+    private static float startTime;
 
     // Use this for initialization
     void Start () {
-
-        // Singleton pattern
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        questionStartTime = Time.time;
+        startTime = Time.time;
     }
 
-    // Resets the questionStartTime to current time
-    public static void resetQuestionStartTime()
+    // Resets the startTime to current time
+    public void resetQuestionStartTime()
     {
-        questionStartTime = Time.time;
+        startTime = Time.time;
     }
 
-    // Gets the time that has passed since questionStartTime
-    public static float getTimeSinceIntervalStart()
+    // Gets the time that has passed since startTime
+    public float getTimeSinceStartTime()
     {
-        return Time.time - questionStartTime;
+        return Time.time - startTime;
     }
 }

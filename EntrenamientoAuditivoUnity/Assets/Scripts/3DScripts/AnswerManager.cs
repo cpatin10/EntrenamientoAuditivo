@@ -17,6 +17,9 @@ public class AnswerManager : MonoBehaviour
     // Correct second note for a given interval, and thus the expected from the user
     private static string expectedNote;
 
+    // Timer for measuring answer time
+    private static Timer timer;
+
     // Use this for initialization
     void Start() {
 
@@ -32,6 +35,7 @@ public class AnswerManager : MonoBehaviour
         }
 
         thereIsQuestion = false;
+        timer = new Timer();
 
         // Subscribes to OnSecondNoteChange (from IntervalPlayer script) to receive the second note when a new interval is set
         IntervalPlayer.OnSecondNoteChange += receiveExpectedNote;
@@ -63,7 +67,7 @@ public class AnswerManager : MonoBehaviour
     {
         if (thereIsQuestion)
         {
-            float timeToAnswer = Timer.getTimeSinceIntervalStart();
+            float timeToAnswer = timer.getTimeSinceStartTime();
             if (answerMatchs(inputNote))
             {
 
@@ -117,6 +121,6 @@ public class AnswerManager : MonoBehaviour
     // Resets the timer, in order to measure the time a player takes to answer a question
     private static void resetTimer()
     {
-        Timer.resetQuestionStartTime();
+        timer.resetQuestionStartTime();
     }
 }
