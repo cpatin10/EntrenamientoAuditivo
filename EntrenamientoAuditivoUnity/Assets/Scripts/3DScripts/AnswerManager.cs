@@ -9,7 +9,6 @@ public class AnswerManager : MonoBehaviour
     public static event GiveFeedback OnProcessedInput;
     public static event GiveFeedback OnIncorrectInput;
 
-
     // Instance used for singleton pattern
     private static AnswerManager instance;
 
@@ -40,11 +39,6 @@ public class AnswerManager : MonoBehaviour
         PressKey.OnPressedKeyIdentify += processAnswer;
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
     // Called when behaviour becomes inactive
     private void OnDisable()
     {
@@ -60,7 +54,7 @@ public class AnswerManager : MonoBehaviour
         thereIsQuestion = true;
     }
 
-    // *****************PENDIENTE: asignar puntos, medir tiempo, almacenar info, retroalimentar
+    // *****************PENDIENTE: asignar puntos, medir tiempo, almacenar info,
     // Process a given answer by the user when a key is pressed
     private static void processAnswer(string inputNote)
     {
@@ -74,8 +68,6 @@ public class AnswerManager : MonoBehaviour
             }
             else
             {
-                // **************PENDIENTE: dar retroalimentación
-
                 Debug.Log("No match");
                 tellAboutIncorrectInput(inputNote);
             }

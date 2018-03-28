@@ -26,11 +26,7 @@ public class KeyFeedback : MonoBehaviour
         AnswerManager.OnIncorrectInput += showInCorrect;
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
-
+    // Called when behaviour becomes inactive
     private void OnDisable()
     {
         // Unsubscribes to events
