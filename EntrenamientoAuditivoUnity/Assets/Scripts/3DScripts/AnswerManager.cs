@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnswerManager : MonoBehaviour {
+public class AnswerManager : MonoBehaviour
+{
+    // Observer pattern. Sets an event for when feedback should be made
+    public delegate void GiveFeedback(string keyName);
+    public static event GiveFeedback OnProcessedInput;
+    public static event GiveFeedback OnIncorrectInput;
+
 
     // Instance used for singleton pattern
     private static AnswerManager instance;
@@ -71,14 +77,16 @@ public class AnswerManager : MonoBehaviour {
                 // **************PENDIENTE: dar retroalimentación
 
                 Debug.Log("No match");
+                tellAboutIncorrectInput(inputNote);
             }
-
+            tellAboutProcessedInput();
             // ******************PENDIENTE: almacenar información de tiempo y respuesta
 
             thereIsQuestion = false;
         }            
     }    
 
+    //Checks whether the given note is equal to the expected one.
     private static bool answerMatchs(string inputNote)
     {
         if (string.Equals(expectedNote, inputNote))
@@ -86,5 +94,25 @@ public class AnswerManager : MonoBehaviour {
             return true;
         }
         return false;
+    }
+
+    // Verifies whether there is a subscriber to the OnProcessedInput
+    // If there is any tells them to show the correct answer
+    private static void tellAboutProcessedInput()
+    {
+        if (OnProcessedInput != null)
+        {
+            OnProcessedInput(expectedNote);
+        }
+    }
+
+    // Verifies whether there is a subscriber to the OnIncorrectInput
+    // If there is any tells them to show that the input was incorrect
+    private static void tellAboutIncorrectInput(string inputNote)
+    {
+        if (OnIncorrectInput != null)
+        {
+            OnIncorrectInput(inputNote);
+        }
     }
 }
