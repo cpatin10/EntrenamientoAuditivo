@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class Timer{
 
-    private static float startTime;
-
-    // Use this for initialization
-    void Start () {
-        startTime = Time.time;
-    }
+    private static float startTime = 0f;
 
     // Resets the startTime to current time
     public void resetQuestionStartTime()
