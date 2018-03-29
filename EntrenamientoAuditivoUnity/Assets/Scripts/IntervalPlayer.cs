@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -109,9 +113,10 @@ public class IntervalPlayer : MonoBehaviour
     // If there is any tells them that the second note was played
     private void tellAboutPlayedSecondNote()
     {
-        if (OnPlayedSecondNote != null)
+        PlayedInterval handler = OnPlayedSecondNote;
+        if (handler != null)
         {
-            OnPlayedSecondNote();
+            handler();
         }
     }
 
@@ -137,19 +142,22 @@ public class IntervalPlayer : MonoBehaviour
     // If there is any tells them about the new defined interval
     private void tellAboutNewInterval()
     {
-        if (OnFirstNoteChange != null)
+        SetInterval handler = OnFirstNoteChange;
+        if (handler != null)
         {
             //*****************PENDIENTE: borrar
             Debug.Log("1ra nota: " + firstNoteName);
 
-            OnFirstNoteChange(firstNoteName);
+            handler(firstNoteName);
         }
-        if (OnSecondNoteChange != null)
+
+        handler = OnSecondNoteChange;
+        if (handler != null)
         {
             //*****************PENDIENTE: borrar
             Debug.Log("2da nota: " + secondNoteName);
 
-            OnSecondNoteChange(secondNoteName);
+            handler(secondNoteName);
         }
     }
 

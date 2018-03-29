@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -101,9 +105,10 @@ public class AnswerManager : MonoBehaviour
     // If there is any tells them to show the correct answer
     private static void tellAboutProcessedInput()
     {
-        if (OnProcessedInput != null)
+        GiveFeedback handler = OnProcessedInput;
+        if (handler != null)
         {
-            OnProcessedInput(expectedNote);
+            handler(expectedNote);
         }
     }
 
@@ -111,9 +116,10 @@ public class AnswerManager : MonoBehaviour
     // If there is any tells them to show that the input was incorrect
     private static void tellAboutIncorrectInput(string inputNote)
     {
-        if (OnIncorrectInput != null)
+        GiveFeedback handler = OnIncorrectInput;
+        if (handler != null)
         {
-            OnIncorrectInput(inputNote);
+            handler(inputNote);
         }
     }
 
@@ -121,9 +127,10 @@ public class AnswerManager : MonoBehaviour
     // If there is any tells them to assign points
     private static void tellAboutPointsAssignment(float time)
     {
-        if (OnPointsAssignmentNeed != null)
+        AssignPoints handler = OnPointsAssignmentNeed;
+        if (handler != null)
         {
-            OnPointsAssignmentNeed(time);
+            handler(time);
         } 
     }
 
