@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnswerManager : MonoBehaviour
 {
@@ -26,12 +27,14 @@ public class AnswerManager : MonoBehaviour
     private static AnswerManager instance;
 
     // Determines if there is a question the user needs to answer, that is an interval has been reproduced
-    private static bool thereIsQuestion;
+    private bool thereIsQuestion;
     // Correct second note for a given interval, and thus the expected from the user
-    private static string expectedNote;
+    private string expectedNote;
 
     // Timer for measuring answer time
-    private static Timer timer;
+    private Timer timer;
+
+    public Text timerText;
 
     // Use this for initialization
     void Start() {
@@ -49,13 +52,20 @@ public class AnswerManager : MonoBehaviour
 
         thereIsQuestion = false;
         timer = new Timer();
+        disableTimerText();
 
         // Subscribes to OnSecondNoteChange (from IntervalPlayer script) to receive the second note when a new interval is set
         IntervalPlayer.OnSecondNoteChange += receiveExpectedNote;
         // Subscribes to OnPlayedSecondNote (from IntervalPlayer script) to check when the second note of an interval is being played
         IntervalPlayer.OnPlayedSecondNote += resetTimer;
+        IntervalPlayer.OnPlayedSecondNote += enableTimerText;
         // Subscribes to OnPressedKey (from PressKey script) to check when a key is pressed in the piano object
         PressKey.OnPressedKeyIdentify += processAnswer;
+    }
+
+    private void Update()
+    {
+        setTimerText();
     }
 
     // Called when behaviour becomes inactive
@@ -68,7 +78,7 @@ public class AnswerManager : MonoBehaviour
     }
 
     // Setter for expectedNote variable
-    private static void receiveExpectedNote(string note)
+    private void receiveExpectedNote(string note)
     {
         expectedNote = note;
         thereIsQuestion = true;
@@ -76,11 +86,13 @@ public class AnswerManager : MonoBehaviour
 
     // *****************PENDIENTE: asignar puntos, almacenar info,
     // Process a given answer by the user when a key is pressed
-    private static void processAnswer(string inputNote)
+    private void processAnswer(string inputNote)
     {
         if (thereIsQuestion)
         {
+            disableTimerText();
             float timeToAnswer = timer.getTimeSinceStartTime();
+
             if (answerMatchs(inputNote))
             {
                 tellAboutPointsAssignment(timeToAnswer);
@@ -98,7 +110,7 @@ public class AnswerManager : MonoBehaviour
     }    
 
     //Checks whether the given note is equal to the expected one.
-    private static bool answerMatchs(string inputNote)
+    private bool answerMatchs(string inputNote)
     {
         if (string.Equals(expectedNote, inputNote))
         {
@@ -109,7 +121,7 @@ public class AnswerManager : MonoBehaviour
 
     // Verifies whether there is a subscriber to the OnProcessedInput
     // If there is any tells them to show the correct answer
-    private static void tellAboutProcessedInput()
+    private void tellAboutProcessedInput()
     {
         GiveFeedback handler = OnProcessedInput;
         if (handler != null)
@@ -120,7 +132,7 @@ public class AnswerManager : MonoBehaviour
 
     // Verifies whether there is a subscriber to the OnIncorrectInput
     // If there is any tells them to show that the input was incorrect
-    private static void tellAboutIncorrectInput(string inputNote)
+    private void tellAboutIncorrectInput(string inputNote)
     {
         GiveFeedback handler = OnIncorrectInput;
         if (handler != null)
@@ -131,7 +143,7 @@ public class AnswerManager : MonoBehaviour
 
     // Verifies whether there is a subscriber to the OnPointsAssignment
     // If there is any tells them to assign points
-    private static void tellAboutPointsAssignment(float time)
+    private void tellAboutPointsAssignment(float time)
     {
         AssignPoints handler = OnPointsAssignmentNeed;
         if (handler != null)
@@ -141,8 +153,27 @@ public class AnswerManager : MonoBehaviour
     }
 
     // Resets the timer, in order to measure the time a player takes to answer a question
-    private static void resetTimer()
+    private void resetTimer()
     {
         timer.resetQuestionStartTime();
+    }
+
+    // Shows timerText in screen
+    private void enableTimerText()
+    {
+        timerText.enabled = true;
+    }
+
+    // Hides timerText from screen
+    private void disableTimerText()
+    {
+        timerText.enabled = false;
+    }
+
+    // Sets the text of timerText to show remaining time to answer
+    private void setTimerText()
+    {
+        int remainingTime = (int)(MAXIMUM_ANSWER_TIME - timer.getTimeSinceStartTime());
+        timerText.text = "" + remainingTime;
     }
 }
