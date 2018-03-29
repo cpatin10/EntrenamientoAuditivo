@@ -84,7 +84,7 @@ public class IntervalPlayer : MonoBehaviour
     // Waits some time before calling the playInterval function
     private void waitAndplayNextInterval()
     {
-        //keepInterval = false;
+        keepInterval = false;
         Invoke("playInterval", TOTAL_INTERVAL_TIME);
     }
 
