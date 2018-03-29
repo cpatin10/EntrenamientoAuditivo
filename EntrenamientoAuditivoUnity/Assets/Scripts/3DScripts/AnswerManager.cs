@@ -8,6 +8,9 @@ public class AnswerManager : MonoBehaviour
     public delegate void GiveFeedback(string keyName);
     public static event GiveFeedback OnProcessedInput;
     public static event GiveFeedback OnIncorrectInput;
+    // Observer pattern. Sets an event for when points should be assigned to the user
+    public delegate void AssignPoints(float time);
+    public static event AssignPoints OnPointsAssignmentNeed;
 
     // Instance used for singleton pattern
     private static AnswerManager instance;
@@ -70,17 +73,13 @@ public class AnswerManager : MonoBehaviour
             float timeToAnswer = timer.getTimeSinceStartTime();
             if (answerMatchs(inputNote))
             {
-
-                // **************PENDIENTE: asignar puntos
-                
+                tellAboutPointsAssignment(timeToAnswer);
             }
             else
             {
                 tellAboutIncorrectInput(inputNote);
             }
             tellAboutProcessedInput();
-
-            Debug.Log(timeToAnswer);
 
             // ******************PENDIENTE: almacenar información de tiempo y respuesta
 
@@ -116,6 +115,16 @@ public class AnswerManager : MonoBehaviour
         {
             OnIncorrectInput(inputNote);
         }
+    }
+
+    // Verifies whether there is a subscriber to the OnPointsAssignment
+    // If there is any tells them to assign points
+    private static void tellAboutPointsAssignment(float time)
+    {
+        if (OnPointsAssignmentNeed != null)
+        {
+            OnPointsAssignmentNeed(time);
+        } 
     }
 
     // Resets the timer, in order to measure the time a player takes to answer a question

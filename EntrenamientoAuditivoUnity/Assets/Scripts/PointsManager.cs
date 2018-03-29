@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PointsManager : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class PointsManager : MonoBehaviour
 
     // Total acumulated points
     private int totalPoints;
+
+    // Texts for displaying points
+    public Text totalPointsText;
+    public Text obtainedPointsText;
 
     // Use this for initialization
     void Start()
@@ -30,23 +35,58 @@ public class PointsManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         totalPoints = 0;
+        setTotalPointsText();
+        disableObtaindePointsText();
+        
+        // Subscribes to OnPointsAssignmentNeed (from AnswerManager script) to check when points should be assigned
+        AnswerManager.OnPointsAssignmentNeed += assignUserPoints;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-
+        // Unsubscribes to events
+        AnswerManager.OnPointsAssignmentNeed -= assignUserPoints;
     }
 
-    private void OnGUI()
+    // Assign points to the user according to a given time
+    public void assignUserPoints(float time)
     {
-        GUI.Label(new Rect(10, 10, 100, 20), "Puntos: " + totalPoints);
+        int points = caulculatePointsByTime(time);
+        showObtainedPointsText(points);
+        addPointsToTotal(points);
+        setTotalPointsText();
     }
 
     // Calculates corresponding points given a time
-    public int caulculatePointsByTime(float time)
+    private int caulculatePointsByTime(float time)
     {
         float points = 1f / time * POINTS_FACTOR;
         return (int)points;
+    }
+
+    // Shows text with obtained points for a limited time
+    private void showObtainedPointsText(int points)
+    {
+        obtainedPointsText.text = "+" + points.ToString();
+        obtainedPointsText.enabled = true;
+        Invoke("disableObtaindePointsText", 2f);
+    }
+
+    // Hides obtainedPointsText
+    private void disableObtaindePointsText()
+    {
+        obtainedPointsText.enabled = false;
+    }
+
+    // Adds the given points to totalPoints
+    private void addPointsToTotal(int points)
+    {
+        totalPoints += points;
+    }
+
+    // Sets the totalPointsText to show current totalPoints
+    private void setTotalPointsText()
+    {
+        totalPointsText.text = "Puntaje: " + totalPoints.ToString();
     }
 }
