@@ -10,13 +10,13 @@ using UnityEngine.UI;
 public class PointsManager : MonoBehaviour
 {
     // Factor for calculating points by multiplying
-    private static readonly float POINTS_FACTOR = 3f;
+    private static readonly float POINTS_FACTOR = 10f;
 
     // Instance used for singleton pattern
     private static PointsManager instance;
 
     // Total acumulated points
-    private int totalPoints;
+    private uint totalPoints;
 
     // Texts for displaying points
     public Text totalPointsText;
@@ -55,21 +55,21 @@ public class PointsManager : MonoBehaviour
     // Assign points to the user according to a given time
     public void assignUserPoints(float time)
     {
-        int points = caulculatePointsByTime(time);
+        uint points = caulculatePointsByTime(time);
         showObtainedPointsText(points);
         addPointsToTotal(points);
         setTotalPointsText();
     }
 
     // Calculates corresponding points given a time
-    private int caulculatePointsByTime(float time)
+    private uint caulculatePointsByTime(float time)
     {
         float points = 1f / time * POINTS_FACTOR;
-        return (int)points;
+        return (uint)points;
     }
 
     // Shows text with obtained points for a limited time
-    private void showObtainedPointsText(int points)
+    private void showObtainedPointsText(uint points)
     {
         obtainedPointsText.text = "+" + points.ToString();
         obtainedPointsText.enabled = true;
@@ -83,7 +83,7 @@ public class PointsManager : MonoBehaviour
     }
 
     // Adds the given points to totalPoints
-    private void addPointsToTotal(int points)
+    private void addPointsToTotal(uint points)
     {
         totalPoints += points;
     }
