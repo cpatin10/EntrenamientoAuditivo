@@ -22,6 +22,10 @@ public class AnswerManager : MonoBehaviour
     // Observer pattern. Sets an event for when points should be assigned to the user
     public delegate void AssignPoints(float time, float minTime, float maxTime);
     public static event AssignPoints OnPointsAssignmentNeed;
+    // 
+    public delegate void StartNewQuestion();
+    //public static event StartNewQuestion OnFinishedTime;
+    public static event StartNewQuestion OnAnsweredQuestion;
 
     // Instance used for singleton pattern
     private static AnswerManager instance;
@@ -92,6 +96,7 @@ public class AnswerManager : MonoBehaviour
         {
             disableTimerText();
             float timeToAnswer = timer.getTimeSinceStartTime();
+            tellAboutAnsweredQuestion();
 
             if (answerMatchs(inputNote))
             {
@@ -127,6 +132,17 @@ public class AnswerManager : MonoBehaviour
         if (handler != null)
         {
             handler(expectedNote);
+        }
+    }
+
+    // Verifies whether there is a subscriber to the OnAnsweredQuestion
+    // If there is any tells them to show the correct answer
+    private void tellAboutAnsweredQuestion()
+    {
+        StartNewQuestion handler = OnAnsweredQuestion;
+        if (handler != null)
+        {
+            handler();
         }
     }
 

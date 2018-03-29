@@ -60,19 +60,35 @@ public class IntervalPlayer : MonoBehaviour
         totalSounds = audioManager.sounds.Length;
         reproducing = false;
 
-        //Subscribes to OnPressedKey (from PressKey script) method to check when a key is pressed in the piano object
-        PressKey.OnPressedKey += changeInterval;
+        // Subscribes to OnPressedKey (from PressKey script) method to check when a key is pressed in the piano object
+        PressKey.OnPressedKey += changeInterval;    
+        // Subscribes to OnAnsweredQuestion (from AnswerManager script) method to check when a question is answered by the user
+        AnswerManager.OnAnsweredQuestion += waitAndlayNextInterval;
+        
     }
 
     // Called when behaviour becomes inactive
     void OnDisable()
     {
-        // Unsubscribes to OnPressedKey method
+        // Unsubscribes to events 
         PressKey.OnPressedKey -= changeInterval;
+        AnswerManager.OnAnsweredQuestion -= waitAndlayNextInterval;
     }
 
     // Called when object is clicked
     private void OnMouseDown()
+    {
+        playInterval();
+    }
+
+    // Waits some time before calling the playInterval function
+    private void waitAndlayNextInterval()
+    {
+        Invoke("playInterval", TOTAL_INTERVAL_TIME);
+    }
+
+    // Plays the corresponding interval, and defines a new one if necessary
+    private void playInterval()
     {
         if (!reproducing)
         {
