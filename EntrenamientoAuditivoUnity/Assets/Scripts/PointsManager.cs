@@ -9,12 +9,6 @@ using UnityEngine.UI;
 
 public class PointsManager : MonoBehaviour
 {
-    // ************* PENDIENTE: los limites de tiempo deben cambiar de acuerdo a la analítica
-
-    // Limit in time for assigning dynamic points
-    private static readonly float MINIMUM_ANSWER_TIME = 1f;
-    private static readonly float MAXIMUM_ANSWER_TIME = 10f;
-
     // Limit for possible points obtained in one question
     private static readonly uint MINIMUM_POINTS_TO_OBTAIN = 0;
     private static readonly uint MAXIMUM_POINTS_TO_OBTAIN = 100;
@@ -60,29 +54,29 @@ public class PointsManager : MonoBehaviour
     }
 
     // Assign points to the user according to a given time
-    public void assignUserPoints(float time)
+    public void assignUserPoints(float time, float minAnswerTime, float maxAnswerTime)
     {
-        uint points = caulculatePointsByTime(time);
+        uint points = caulculatePointsByTime(time, minAnswerTime, maxAnswerTime);
         showObtainedPointsText(points);
         addPointsToTotal(points);
         setTotalPointsText();
     }
 
     // Calculates corresponding points given a time
-    private uint caulculatePointsByTime(float time)
+    private uint caulculatePointsByTime(float time, float minAnswerTime, float maxAnswerTime)
     {
-        if (time <= MINIMUM_ANSWER_TIME)
+        if (time <= minAnswerTime)
         {
             return MAXIMUM_POINTS_TO_OBTAIN;
         } 
-        else if (time >= MAXIMUM_ANSWER_TIME)
+        else if (time >= maxAnswerTime)
         {
             return MINIMUM_POINTS_TO_OBTAIN;
         }
         else
         {
             
-            float points = MAXIMUM_POINTS_TO_OBTAIN / MAXIMUM_ANSWER_TIME * (MAXIMUM_ANSWER_TIME - time);
+            float points = MAXIMUM_POINTS_TO_OBTAIN / maxAnswerTime * (maxAnswerTime - time);
 
             Debug.Log(time);
             Debug.Log(points);

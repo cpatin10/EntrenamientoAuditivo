@@ -8,12 +8,18 @@ using UnityEngine;
 
 public class AnswerManager : MonoBehaviour
 {
+    // ************* PENDIENTE: los limites de tiempo deben cambiar de acuerdo a la analítica
+
+    // Limit in time for assigning dynamic points
+    public static readonly float MINIMUM_ANSWER_TIME = 1f;
+    public static readonly float MAXIMUM_ANSWER_TIME = 10f;
+
     // Observer pattern. Sets an event for when feedback should be made
     public delegate void GiveFeedback(string keyName);
     public static event GiveFeedback OnProcessedInput;
     public static event GiveFeedback OnIncorrectInput;
     // Observer pattern. Sets an event for when points should be assigned to the user
-    public delegate void AssignPoints(float time);
+    public delegate void AssignPoints(float time, float minTime, float maxTime);
     public static event AssignPoints OnPointsAssignmentNeed;
 
     // Instance used for singleton pattern
@@ -130,7 +136,7 @@ public class AnswerManager : MonoBehaviour
         AssignPoints handler = OnPointsAssignmentNeed;
         if (handler != null)
         {
-            handler(time);
+            handler(time, MINIMUM_ANSWER_TIME, MAXIMUM_ANSWER_TIME);
         } 
     }
 
