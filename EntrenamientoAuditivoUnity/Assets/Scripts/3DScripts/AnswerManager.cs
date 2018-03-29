@@ -25,19 +25,21 @@ public class AnswerManager : MonoBehaviour
     // 
     public delegate void StartNewQuestion();
     //public static event StartNewQuestion OnFinishedTime;
-    public static event StartNewQuestion OnAnsweredQuestion;
+    public static event StartNewQuestion OnQuestionFinished;
 
     // Instance used for singleton pattern
     private static AnswerManager instance;
 
     // Determines if there is a question the user needs to answer, that is an interval has been reproduced
     private bool thereIsQuestion;
+
+    //private bool questionFinished;
     // Correct second note for a given interval, and thus the expected from the user
     private string expectedNote;
 
     // Timer for measuring answer time
     private Timer timer;
-
+    // Text for displaying remaining time before next question
     public Text timerText;
 
     // Use this for initialization
@@ -55,6 +57,7 @@ public class AnswerManager : MonoBehaviour
         }
 
         thereIsQuestion = false;
+        //questionFinished = false;
         timer = new Timer();
         disableTimerText();
 
@@ -69,6 +72,7 @@ public class AnswerManager : MonoBehaviour
 
     private void Update()
     {
+        checkEndOfTime();
         setTimerText();
     }
 
@@ -78,6 +82,7 @@ public class AnswerManager : MonoBehaviour
         // Unsubscribes to events
         IntervalPlayer.OnSecondNoteChange -= receiveExpectedNote;
         IntervalPlayer.OnPlayedSecondNote -= resetTimer;
+        IntervalPlayer.OnPlayedSecondNote -= enableTimerText;
         PressKey.OnPressedKeyIdentify -= processAnswer;
     }
 
@@ -86,6 +91,7 @@ public class AnswerManager : MonoBehaviour
     {
         expectedNote = note;
         thereIsQuestion = true;
+        //questionFinished = false;
     }
 
     // *****************PENDIENTE: asignar puntos, almacenar info,
@@ -96,7 +102,7 @@ public class AnswerManager : MonoBehaviour
         {
             disableTimerText();
             float timeToAnswer = timer.getTimeSinceStartTime();
-            tellAboutAnsweredQuestion();
+            tellAboutQuestionFinished();
 
             if (answerMatchs(inputNote))
             {
@@ -135,11 +141,11 @@ public class AnswerManager : MonoBehaviour
         }
     }
 
-    // Verifies whether there is a subscriber to the OnAnsweredQuestion
+    // Verifies whether there is a subscriber to the OnQuestionFinished
     // If there is any tells them to show the correct answer
-    private void tellAboutAnsweredQuestion()
+    private void tellAboutQuestionFinished()
     {
-        StartNewQuestion handler = OnAnsweredQuestion;
+        StartNewQuestion handler = OnQuestionFinished;
         if (handler != null)
         {
             handler();
@@ -190,6 +196,19 @@ public class AnswerManager : MonoBehaviour
     private void setTimerText()
     {
         int remainingTime = (int)(MAXIMUM_ANSWER_TIME - timer.getTimeSinceStartTime());
-        timerText.text = "" + remainingTime;
+        if (remainingTime >= 0)
+        {
+            timerText.text = remainingTime.ToString();
+        }
+    }
+
+    // Checks whether the time given for the question is finished, if so, tells about it
+    private void checkEndOfTime()
+    {
+        if (timer.getStartTime() != -1f && timer.getTimeSinceStartTime() >= MAXIMUM_ANSWER_TIME)
+        {
+            timer.restoreTimer();
+            tellAboutQuestionFinished();
+        }
     }
 }

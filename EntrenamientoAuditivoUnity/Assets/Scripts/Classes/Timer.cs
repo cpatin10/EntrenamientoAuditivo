@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class Timer{
 
-    private static float startTime = 0f;
+    private static float startTime = -1f;
 
     // Resets the startTime to current time
     public void resetQuestionStartTime()
@@ -20,5 +20,17 @@ public class Timer{
     public float getTimeSinceStartTime()
     {
         return Time.time - startTime;
+    }
+
+    // Restores timer to -1
+    public void restoreTimer()
+    {
+        startTime = -1f;
+    }
+
+    // Getter for startTime
+    public float getStartTime()
+    {
+        return startTime;
     }
 }

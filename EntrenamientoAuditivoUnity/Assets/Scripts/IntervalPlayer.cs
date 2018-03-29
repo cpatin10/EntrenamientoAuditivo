@@ -61,9 +61,9 @@ public class IntervalPlayer : MonoBehaviour
         reproducing = false;
 
         // Subscribes to OnPressedKey (from PressKey script) method to check when a key is pressed in the piano object
-        PressKey.OnPressedKey += changeInterval;    
-        // Subscribes to OnAnsweredQuestion (from AnswerManager script) method to check when a question is answered by the user
-        AnswerManager.OnAnsweredQuestion += waitAndlayNextInterval;
+        PressKey.OnPressedKey += changeInterval;
+        // Subscribes to OnQuestionFinished (from AnswerManager script) method to check when a question is answered by the user
+        AnswerManager.OnQuestionFinished += waitAndplayNextInterval;
         
     }
 
@@ -72,7 +72,7 @@ public class IntervalPlayer : MonoBehaviour
     {
         // Unsubscribes to events 
         PressKey.OnPressedKey -= changeInterval;
-        AnswerManager.OnAnsweredQuestion -= waitAndlayNextInterval;
+        AnswerManager.OnQuestionFinished -= waitAndplayNextInterval;
     }
 
     // Called when object is clicked
@@ -82,8 +82,9 @@ public class IntervalPlayer : MonoBehaviour
     }
 
     // Waits some time before calling the playInterval function
-    private void waitAndlayNextInterval()
+    private void waitAndplayNextInterval()
     {
+        //keepInterval = false;
         Invoke("playInterval", TOTAL_INTERVAL_TIME);
     }
 
