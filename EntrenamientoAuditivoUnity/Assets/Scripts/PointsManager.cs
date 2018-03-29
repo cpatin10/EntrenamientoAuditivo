@@ -9,8 +9,15 @@ using UnityEngine.UI;
 
 public class PointsManager : MonoBehaviour
 {
-    // Factor for calculating points by multiplying
-    private static readonly float POINTS_FACTOR = 10f;
+    // ************* PENDIENTE: los limites de tiempo deben cambiar de acuerdo a la analítica
+
+    // Limit in time for assigning dynamic points
+    private static readonly float MINIMUM_ANSWER_TIME = 1f;
+    private static readonly float MAXIMUM_ANSWER_TIME = 10f;
+
+    // Limit for possible points obtained in one question
+    private static readonly uint MINIMUM_POINTS_TO_OBTAIN = 0;
+    private static readonly uint MAXIMUM_POINTS_TO_OBTAIN = 100;
 
     // Instance used for singleton pattern
     private static PointsManager instance;
@@ -64,8 +71,24 @@ public class PointsManager : MonoBehaviour
     // Calculates corresponding points given a time
     private uint caulculatePointsByTime(float time)
     {
-        float points = 1f / time * POINTS_FACTOR;
-        return (uint)points;
+        if (time <= MINIMUM_ANSWER_TIME)
+        {
+            return MAXIMUM_POINTS_TO_OBTAIN;
+        } 
+        else if (time >= MAXIMUM_ANSWER_TIME)
+        {
+            return MINIMUM_POINTS_TO_OBTAIN;
+        }
+        else
+        {
+            
+            float points = MAXIMUM_POINTS_TO_OBTAIN / MAXIMUM_ANSWER_TIME * (MAXIMUM_ANSWER_TIME - time);
+
+            Debug.Log(time);
+            Debug.Log(points);
+
+            return (uint)points;
+        }
     }
 
     // Shows text with obtained points for a limited time
