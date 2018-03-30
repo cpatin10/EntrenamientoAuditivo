@@ -32,7 +32,6 @@ public class IntervalPlayer : MonoBehaviour
 
     // Information about the interval that is being played
     private static string firstNoteName, secondNoteName;
-    private static Interval playedInterval;
 
     // Determines whether a new interval should be defined or to continue with the current one
     private static bool keepInterval = false;
@@ -151,8 +150,6 @@ public class IntervalPlayer : MonoBehaviour
         generateSecondNote(firstNote, interval);
 
         tellAboutNewInterval();
-
-        playedInterval = (Interval)interval;
     }
 
     // Verifies whether there is a subscriber to the OnFirstNoteChange and OnSecondNoteChange

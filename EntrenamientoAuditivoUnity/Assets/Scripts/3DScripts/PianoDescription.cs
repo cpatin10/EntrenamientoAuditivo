@@ -11,7 +11,7 @@ public class PianoDescription : MonoBehaviour {
     [SerializeField] private GameObject whiteKey;
     [SerializeField] private GameObject blackKey;
 
-    // Dictionary for storing the position (x, y, z) of each key (identified by name) in the piano
+    // Dictionary for storing the GameObject of each key (identified by name) in the piano
     private static Dictionary<string, GameObject> pianoKeys;
     // Hashsets for storing the blackKeys and WhiteKeys names separately
     private static HashSet<string> blackKeys;
