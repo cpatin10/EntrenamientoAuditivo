@@ -24,7 +24,13 @@ public enum Interval
     MajorSeventh
 };
 
-public class EnumInterval{
+public class EnumInterval {
 
-    //In this class all methods needed for handling the enumeration should be defined
+    // Returns the interval between two notes, given its ID
+    public static Interval determineInterval(int firstNote, int secondNote)
+    {
+        int semitones = Mathf.Abs(secondNote - firstNote);
+        return (Interval)semitones;
+    }
+    
 }
