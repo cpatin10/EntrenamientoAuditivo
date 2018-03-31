@@ -40,16 +40,6 @@ public class AudioManager : MonoBehaviour {
 
             notesId.Add(sounds[i].name, i);
         }
-
-        /*
-        foreach (Sound sound in sounds) {
-            sound.source = gameObject.AddComponent<AudioSource>();
-            sound.source.clip = sound.clip;
-
-            sound.source.volume = sound.volume;
-            sound.source.loop = sound.loop;
-        }
-        */
 	}
 
     // Looks for the Sound object with the given name, and calls its source to reproduce the sound
@@ -68,8 +58,13 @@ public class AudioManager : MonoBehaviour {
     }
 
     // Returns the sound id given its name
+    // If the name is empty, returns -1
     public int GetSoundIDByName(string name)
     {
+        if (string.Equals(name, ""))
+        {
+            return -1;
+        }
         return notesId[name];
     }
 }
