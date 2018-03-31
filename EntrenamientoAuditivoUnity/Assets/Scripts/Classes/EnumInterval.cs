@@ -11,6 +11,8 @@ using System;
 // The value is asigned according to the number of semitones that separate the notes in each interval
 public enum Interval
 {
+    None = -1,
+
     MinorSecond = 1,
     MajorSecond,
     MinorThird,
@@ -29,6 +31,10 @@ public class EnumInterval {
     // Returns the interval between two notes, given its ID
     public static Interval determineInterval(int firstNote, int secondNote)
     {
+        if (firstNote == -1 || secondNote == -1)
+        {
+            return Interval.None;
+        }
         int semitones = Mathf.Abs(secondNote - firstNote);
         return (Interval)semitones;
     }
