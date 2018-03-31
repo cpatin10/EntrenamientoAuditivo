@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
 
 public class AnswerManager : MonoBehaviour
 {
@@ -32,10 +33,11 @@ public class AnswerManager : MonoBehaviour
 
     // Determines if there is a question the user needs to answer, that is an interval has been reproduced
     private bool thereIsQuestion;
-
-    //private bool questionFinished;
+    
     // Correct second note for a given interval, and thus the expected from the user
     private string expectedNote;
+    // First note of the played interval
+    private string firstNote;
 
     // Timer for measuring answer time
     private Timer timer;
@@ -63,6 +65,8 @@ public class AnswerManager : MonoBehaviour
 
         // Subscribes to OnSecondNoteChange (from IntervalPlayer script) to receive the second note when a new interval is set
         IntervalPlayer.OnSecondNoteChange += receiveExpectedNote;
+        // Subscribes to OnFirstNoteChange (from IntervalPlayer script) to receive the first note when a new interval is set
+        IntervalPlayer.OnFirstNoteChange += setFirstNote;
         // Subscribes to OnPlayedSecondNote (from IntervalPlayer script) to check when the second note of an interval is being played
         IntervalPlayer.OnPlayedSecondNote += resetTimer;
         IntervalPlayer.OnPlayedSecondNote += enableTimerText;
@@ -72,7 +76,7 @@ public class AnswerManager : MonoBehaviour
 
     private void Update()
     {
-        checkEndOfTime();
+        checkEndOfQuestion();
         setTimerText();
     }
 
@@ -81,6 +85,7 @@ public class AnswerManager : MonoBehaviour
     {
         // Unsubscribes to events
         IntervalPlayer.OnSecondNoteChange -= receiveExpectedNote;
+        IntervalPlayer.OnFirstNoteChange -= setFirstNote;
         IntervalPlayer.OnPlayedSecondNote -= resetTimer;
         IntervalPlayer.OnPlayedSecondNote -= enableTimerText;
         PressKey.OnPressedKeyIdentify -= processAnswer;
@@ -91,28 +96,33 @@ public class AnswerManager : MonoBehaviour
     {
         expectedNote = note;
         thereIsQuestion = true;
-        //questionFinished = false;
     }
 
-    // *****************PENDIENTE: asignar puntos, almacenar info,
+    // *****************PENDIENTE: almacenar info,
     // Process a given answer by the user when a key is pressed
     private void processAnswer(string inputNote)
     {
         if (thereIsQuestion)
         {
+            float answerTime;
+            bool correctAnswer;
+
             disableTimerText();
-            float timeToAnswer = timer.getTimeSinceStartTime();
+            answerTime = timer.getTimeSinceStartTime();
             tellAboutQuestionFinished();
 
-            if (answerMatchs(inputNote))
+            correctAnswer = answerMatchs(inputNote);
+            if (correctAnswer)
             {
-                tellAboutPointsAssignment(timeToAnswer);
+                tellAboutPointsAssignment(answerTime);
             }
             else
             {
                 tellAboutIncorrectInput(inputNote);
             }
             tellAboutProcessedInput();
+
+            sendAnalytics(correctAnswer, firstNote, expectedNote, inputNote, answerTime);
 
             // ******************PENDIENTE: almacenar información de tiempo y respuesta
 
@@ -203,12 +213,63 @@ public class AnswerManager : MonoBehaviour
     }
 
     // Checks whether the time given for the question is finished, if so, tells about it
-    private void checkEndOfTime()
+    private bool endOfTime()
     {
         if (timer.getStartTime() != -1f && timer.getTimeSinceStartTime() >= MAXIMUM_ANSWER_TIME)
         {
             timer.restoreTimer();
             tellAboutQuestionFinished();
+            return true;
         }
+        return false;
+    }
+
+    private void checkEndOfQuestion()
+    {
+        if (endOfTime())
+        {
+            sendAnalytics(false, firstNote, expectedNote, "", MAXIMUM_ANSWER_TIME);
+            thereIsQuestion = false;
+        }
+    }
+
+    // Setter for firstNote
+    private void setFirstNote(string firstNote)
+    {
+        this.firstNote = firstNote;
+    }
+
+    // Determines the interval defined by the names of the notes
+    private Interval determineIntervalByName(string firstNote, string secondNote)
+    {
+        AudioManager audioManager = FindObjectOfType<AudioManager>();
+        int firstNoteID = audioManager.GetSoundIDByName(firstNote);
+        int secondNoteID = audioManager.GetSoundIDByName(secondNote);
+
+        return EnumInterval.determineInterval(firstNoteID, secondNoteID);
+    }
+
+    // Sends to Unity Analytics information about the question/answer
+    private void sendAnalytics(bool correctAnswer, string firstNote, 
+        string expectedNote, string inputNote, float answerTime)
+    {
+        Debug.Log("Entre a la analitica");
+
+        Interval expectedInterval = determineIntervalByName(firstNote, expectedNote);
+        Interval inputInterval = determineIntervalByName(firstNote, inputNote);
+
+        var analytics = Analytics.CustomEvent("Respuesta Usuario", new Dictionary<string, object>
+        {
+            { "Nivel", "Piano 3D - Múltiples intervalos" },
+            { "Respuesta correcta", correctAnswer },
+            { "Intervalo preguntado", expectedInterval },
+            { "Intervalo respondido", inputInterval },
+            { "Primer nota", firstNote },
+            { "Segunda nota (preguntada)", expectedNote },
+            { "Segunda nota (respondida)", inputNote },
+            { "Tiempo de respuesta", answerTime }
+        });
+
+        Debug.Log(analytics);
     }
 }
