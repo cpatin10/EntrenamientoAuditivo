@@ -245,7 +245,6 @@ public class AnswerManager : MonoBehaviour
         AudioManager audioManager = FindObjectOfType<AudioManager>();
         int firstNoteID = audioManager.GetSoundIDByName(firstNote);
         int secondNoteID = audioManager.GetSoundIDByName(secondNote);
-
         return EnumInterval.determineInterval(firstNoteID, secondNoteID);
     }
 

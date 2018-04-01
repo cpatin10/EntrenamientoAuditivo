@@ -31,7 +31,8 @@ public class EnumInterval {
     // Returns the interval between two notes, given its ID
     public static Interval determineInterval(int firstNote, int secondNote)
     {
-        if (firstNote == -1 || secondNote == -1)
+        if (firstNote < (int)(Interval.MinorSecond) || firstNote > (int)(Interval.MajorSeventh) 
+            || secondNote < (int)(Interval.MinorSecond) || secondNote > (int)(Interval.MajorSeventh))
         {
             return Interval.None;
         }
