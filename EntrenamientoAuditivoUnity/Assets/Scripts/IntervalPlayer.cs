@@ -38,8 +38,9 @@ public class IntervalPlayer : MonoBehaviour
     // Determines if an interval is currently being played
     private static bool reproducing;
 
-    // Determines the maximum interval that should be used in the game, by default is the major seventh
+    // Determines the maximum and minimum interval that should be used in the game, by default is minor second and major seventh
     [SerializeField] private Interval greatestInterval = Interval.MajorSeventh;
+    [SerializeField] private Interval leastInterval = Interval.MinorSecond;
 
     // Use this for initialization
     void Start()
@@ -146,7 +147,7 @@ public class IntervalPlayer : MonoBehaviour
 
         int firstNote = Random.Range(0, totalSounds); // between 0 and totalSounds-1
         firstNoteName = audioManager.GetSoundByID(firstNote).name;
-        int interval = Random.Range((int)Interval.MinorSecond, (int)greatestInterval + 1);
+        int interval = Random.Range((int)leastInterval, (int)greatestInterval + 1);
         generateSecondNote(firstNote, interval);
 
         tellAboutNewInterval();
