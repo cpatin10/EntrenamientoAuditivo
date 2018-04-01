@@ -9,6 +9,9 @@ TagManager:
   - BlackKeyPrefab
   - WhiteKey
   - BlackKey
+  - Platform
+  - Ground
+  - ways
   layers:
   - Default
   - TransparentFX
@@ -45,4 +48,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2287058113
+    locked: 0
+  - name: Middle
+    uniqueID: 4239593291
+    locked: 0
+  - name: Front
+    uniqueID: 1698414839
     locked: 0
