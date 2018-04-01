@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23617479891024512}
   m_Layer: 0
   m_Name: White Key Prefab
-  m_TagString: Untagged
+  m_TagString: WhiteKeyPrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
