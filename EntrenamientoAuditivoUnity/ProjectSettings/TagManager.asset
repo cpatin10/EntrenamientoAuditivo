@@ -12,6 +12,7 @@ TagManager:
   - Platform
   - Ground
   - ways
+  - water
   layers:
   - Default
   - TransparentFX

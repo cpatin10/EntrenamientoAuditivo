@@ -1,14 +1,13 @@
-﻿// This is a personal academic project. Dear PVS-Studio, please check it.
-
-// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using UnityEditor.Graphs;
 using UnityEngine;
+using UnityEngine.UI;
 
-public partial class IntervalPlayer : MonoBehaviour
-{
-    // Total time given to play the complete interval
+public class IntervalPlayer2D : MonoBehaviour {
+
+	// Total time given to play the complete interval
     private static readonly float TOTAL_INTERVAL_TIME = 2.5f;
 
     // Observer pattern. Sets an event for when a new interval is set
@@ -34,7 +33,7 @@ public partial class IntervalPlayer : MonoBehaviour
     private static string firstNoteName, secondNoteName;
 
     // Determines whether a new interval should be defined or to continue with the current one
-    private static bool keepInterval = false;
+    public static bool keepInterval = false;
     // Determines if an interval is currently being played
     private static bool reproducing;
 
@@ -42,11 +41,17 @@ public partial class IntervalPlayer : MonoBehaviour
     [SerializeField] private Interval greatestInterval = Interval.MajorSeventh;
     [SerializeField] private Interval leastInterval = Interval.MinorSecond;
 
+    public PlayerController Player;
+    
+    public MotorGame ShowQuestion;
+    public GameObject Quest;
+
+    public GameObject ButtonMinus;
+    public GameObject ButttonMayor;
+    
     // Use this for initialization
     void Start()
     {
-        // Singleton pattern
-       
 
         audioManager = FindObjectOfType<AudioManager>();
         totalSounds = audioManager.sounds.Length;
@@ -57,6 +62,10 @@ public partial class IntervalPlayer : MonoBehaviour
         // Subscribes to OnQuestionFinished (from AnswerManager script) method to check when a question is answered by the user
         AnswerManager.OnQuestionFinished += waitAndplayNextInterval;
         
+        Player = GetComponentInParent<PlayerController>();
+        
+        Quest = GameObject.Find("Game");
+        ShowQuestion = Quest.GetComponentInParent<MotorGame>();
     }
 
     // Called when behaviour becomes inactive
@@ -67,12 +76,6 @@ public partial class IntervalPlayer : MonoBehaviour
         AnswerManager.OnQuestionFinished -= waitAndplayNextInterval;
     }
 
-    // Called when object is clicked
-    private void OnMouseDown()
-    {
-        playInterval();
-    }
-
     // Waits some time before calling the playInterval function
     private void waitAndplayNextInterval()
     {
@@ -81,7 +84,7 @@ public partial class IntervalPlayer : MonoBehaviour
     }
 
     // Plays the corresponding interval, and defines a new one if necessary
-    private void playInterval()
+    public void playInterval()
     {
         if (!reproducing)
         {
@@ -207,10 +210,54 @@ public partial class IntervalPlayer : MonoBehaviour
     }
 
     // Sets keepInterval to false, so that next interval is a new one
-    private static void changeInterval()
+    public static void changeInterval()
     {
         keepInterval = false;
     }
 
-}
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Platform"))
+        {
+            DetectedEnterPlatform();
+        }
+    }
 
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Platform"))
+        {
+            DetectedExitPlatform();
+        }
+    }
+    
+    public void DetectedEnterPlatform()
+    {
+        //Debug.Log("Probando el detector de plataformas");
+        playInterval();
+        ShowQuestion.MakeQuestionOn();
+        Player.JumpPower = 0f;
+        Player.Speed = 0f;
+    }
+
+    public void DetectedExitPlatform()
+    {
+        //Debug.Log("Detectando que salimos de la plataforma");
+        changeInterval();
+        Player.JumpPower = 9f;
+    }
+
+    public void ButtonClickMinus()
+    {
+        Debug.Log("Probando boton minus");
+        ShowQuestion.MakeQuestionOff();
+        Player.JumpPower = 10f;
+        Player.Speed = 10f;
+    }
+
+    public void ButttonClickMayor()
+    {
+        Debug.Log("Probando boton mayor");
+    }
+}
+    

@@ -20,3 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/2DAssets/Scenes/2DGame/2DLevel5.unity
     guid: be0dd3172b2bcbb489d314af17daf09b
+  - enabled: 1
+    path: Assets/2DAssets/Scenes/2DGame/Menu2D.unity
+    guid: c4856a4f5987b8c43a6c87ecd60b026d
+  - enabled: 1
+    path: Assets/2DAssets/Scenes/2DGame/Menu2D3D.unity
+    guid: 9d1543c7c015679469e7a0cd103269dd
