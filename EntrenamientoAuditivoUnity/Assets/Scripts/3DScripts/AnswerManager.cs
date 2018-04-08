@@ -219,6 +219,7 @@ public class AnswerManager : MonoBehaviour
         {
             timer.restoreTimer();
             tellAboutQuestionFinished();
+            tellAboutProcessedInput();
             return true;
         }
         return false;
