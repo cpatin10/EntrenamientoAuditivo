@@ -38,6 +38,12 @@ public class IntervalPlayer : MonoBehaviour
     // Determines if an interval is currently being played
     private static bool reproducing;
 
+    // Determines object colors
+    private static readonly Color NO_REPRODUCING_COLOR = new Color(0.490f, 0.765f, 0.925f);
+    private static readonly Color REPRODUCING_COLOR = new Color(1f, 0.302f, 0.302f);
+    // Object renderer
+    private Renderer renderer; 
+
     // Determines the maximum and minimum interval that should be used in the game, by default is minor second and major seventh
     [SerializeField] private Interval greatestInterval = Interval.MajorSeventh;
     [SerializeField] private Interval leastInterval = Interval.MinorSecond;
@@ -59,6 +65,8 @@ public class IntervalPlayer : MonoBehaviour
         audioManager = FindObjectOfType<AudioManager>();
         totalSounds = audioManager.sounds.Length;
         reproducing = false;
+
+        renderer = GetComponent<Renderer>();
 
         // Subscribes to OnPressedKey (from PressKey script) method to check when a key is pressed in the piano object
         PressKey.OnPressedKey += changeInterval;
@@ -99,6 +107,7 @@ public class IntervalPlayer : MonoBehaviour
                 defineInterval();
             }
             playFirstNote();
+            renderer.material.color = REPRODUCING_COLOR;
             Invoke("playSecondNote", SECOND_NOTE_STARTING_TIME);
 
             //****************PENDIENTE: Cambiar color en momentos que se puede y no reproducir
@@ -111,6 +120,7 @@ public class IntervalPlayer : MonoBehaviour
     private void enablePlayer()
     {
         reproducing = false;
+        renderer.material.color = NO_REPRODUCING_COLOR;
     }
 
     // Reproduce the sound corresponding to the previously set firstNote
