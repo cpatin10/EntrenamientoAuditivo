@@ -37,6 +37,10 @@ public class IntervalPlayer : MonoBehaviour
     private static bool keepInterval = false;
     // Determines if an interval is currently being played
     private static bool reproducing;
+    
+    
+    // Determines whether the interval was reproduced one time already
+    private static bool intervalPlayedFirstTime = false;
 
     // Determines object colors
     private static readonly Color NO_REPRODUCING_COLOR = new Color(0.490f, 0.765f, 0.925f);
@@ -105,6 +109,7 @@ public class IntervalPlayer : MonoBehaviour
             if (!keepInterval)
             {
                 defineInterval();
+                intervalPlayedFirstTime = false;
             }
             playFirstNote();
             Invoke("playSecondNote", SECOND_NOTE_STARTING_TIME);
@@ -130,7 +135,11 @@ public class IntervalPlayer : MonoBehaviour
     private void playSecondNote()
     {
         audioManager.Play(secondNoteName);
-        tellAboutPlayedSecondNote();
+        if (!intervalPlayedFirstTime)
+        {
+            tellAboutPlayedSecondNote();
+            intervalPlayedFirstTime = true;
+        }
     }
 
     // Verifies whether there is a subscriber to the tellAboutPlayedSecondNote
