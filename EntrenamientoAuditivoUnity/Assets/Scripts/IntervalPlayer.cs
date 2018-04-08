@@ -107,11 +107,7 @@ public class IntervalPlayer : MonoBehaviour
                 defineInterval();
             }
             playFirstNote();
-            renderer.material.color = REPRODUCING_COLOR;
             Invoke("playSecondNote", SECOND_NOTE_STARTING_TIME);
-
-            //****************PENDIENTE: Cambiar color en momentos que se puede y no reproducir
-
             Invoke("enablePlayer", TOTAL_INTERVAL_TIME);
         }
     }
@@ -126,6 +122,7 @@ public class IntervalPlayer : MonoBehaviour
     // Reproduce the sound corresponding to the previously set firstNote
     private void playFirstNote()
     {
+        renderer.material.color = REPRODUCING_COLOR;
         audioManager.Play(firstNoteName);
     }
 
