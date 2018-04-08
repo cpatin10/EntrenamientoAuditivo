@@ -14,7 +14,7 @@ public class AnswerManager : MonoBehaviour
 
     // Limit in time for assigning dynamic points
     public static readonly float MINIMUM_ANSWER_TIME = 1f;
-    public static readonly float MAXIMUM_ANSWER_TIME = 10f;
+    public static readonly float MAXIMUM_ANSWER_TIME = 30f;
 
     // Observer pattern. Sets an event for when feedback should be made
     public delegate void GiveFeedback(string keyName);
