@@ -31,12 +31,12 @@ public class EnumInterval {
     // Returns the interval between two notes, given its ID
     public static Interval determineInterval(int firstNote, int secondNote)
     {
-        if (firstNote < (int)(Interval.MinorSecond) || firstNote > (int)(Interval.MajorSeventh) 
-            || secondNote < (int)(Interval.MinorSecond) || secondNote > (int)(Interval.MajorSeventh))
+        int semitones = Mathf.Abs(secondNote - firstNote);
+
+        if (semitones < (int)(Interval.MinorSecond) || semitones > (int)(Interval.MajorSeventh))
         {
             return Interval.None;
         }
-        int semitones = Mathf.Abs(secondNote - firstNote);
         return (Interval)semitones;
     }
     

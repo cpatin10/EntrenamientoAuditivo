@@ -275,7 +275,5 @@ public class AnswerManager : MonoBehaviour
             { "Segunda nota (respondida)", inputNote },
             { "Tiempo de respuesta", answerTime }
         });
-
-        Debug.Log(analytics);
     }
 }
