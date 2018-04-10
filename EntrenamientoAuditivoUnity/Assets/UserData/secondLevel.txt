@@ -1,0 +1,1 @@
+{"correct":false,"playedInterval":2,"answeredInterval":-1,"firstNote":"F3","secondNote":"G3","time":0.5631779432296753}{"correct":false,"playedInterval":-1,"answeredInterval":-1,"firstNote":"Ab4","secondNote":"Gb4","time":0.5301333665847778}
