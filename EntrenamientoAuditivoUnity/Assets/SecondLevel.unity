@@ -1052,7 +1052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   greatestInterval: 2
-  leastInterval: 2
+  leastInterval: 1
 --- !u!23 &1489804746
 MeshRenderer:
   m_ObjectHideFlags: 0

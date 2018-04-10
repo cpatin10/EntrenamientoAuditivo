@@ -22,9 +22,9 @@ public class DataManager : MonoBehaviour {
     // Saves the given data as json format at the end of the file with secondLvlFilePath
     // In order to do so, stores data in new AnswerData3D object
     static public void saveSecondLvlAnswer(bool correct, int expectedInterval, int inputInterval,
-        string first_note, string second_note, float time)
+        string firstNote, string expectedNote, string inputNote, float time)
     {
-        AnswerData3D data = new AnswerData3D(correct, expectedInterval, inputInterval, first_note, second_note, time);
+        AnswerData3D data = new AnswerData3D(correct, expectedInterval, inputInterval, firstNote, expectedNote, inputNote, time);
         string jsonString = JsonUtility.ToJson(data);
         File.AppendAllText(secondLvlFilePath, jsonString);
     }

@@ -255,7 +255,7 @@ public class AnswerManager : MonoBehaviour
         Interval expectedInterval = determineIntervalByName(firstNote, expectedNote);
         Interval inputInterval = determineIntervalByName(firstNote, inputNote);
 
-        DataManager.saveSecondLvlAnswer(correctAnswer, (int)expectedInterval, (int)inputInterval, firstNote, expectedNote, answerTime);
+        DataManager.saveSecondLvlAnswer(correctAnswer, (int)expectedInterval, (int)inputInterval, firstNote, expectedNote, inputNote, answerTime);
         sendAnalytics(correctAnswer, expectedInterval, inputInterval, firstNote, expectedNote, inputNote, answerTime);
     }
 

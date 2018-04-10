@@ -8,19 +8,21 @@ public class AnswerData3D
     public int playedInterval;
     public int answeredInterval;
     public string firstNote;
-    public string secondNote;
+    public string expectedNote;
+    public string inputNote;
     public float time;
 
     // Constructor
     // This class can not be monobehaviour
     public AnswerData3D(bool correct, int playedInterval, int answeredInterval,
-        string first_note, string second_note, float time)
+        string firstNote, string expectedNote, string inputNote, float time)
     {
         this.correct = correct;
         this.playedInterval = playedInterval;
         this.answeredInterval = answeredInterval;
-        this.firstNote = first_note;
-        this.secondNote = second_note;
+        this.firstNote = firstNote;
+        this.expectedNote = expectedNote;
+        this.inputNote = inputNote;
         this.time = time;
     }
 }
