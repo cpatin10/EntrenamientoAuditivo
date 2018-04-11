@@ -1052,7 +1052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   greatestInterval: 2
-  leastInterval: 2
+  leastInterval: 1
 --- !u!23 &1489804746
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1225,6 +1225,7 @@ GameObject:
   - component: {fileID: 1684962911}
   - component: {fileID: 1684962912}
   - component: {fileID: 1684962913}
+  - component: {fileID: 1684962914}
   m_Layer: 0
   m_Name: GeneralScriptingObject
   m_TagString: Untagged
@@ -1271,6 +1272,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 2012952389}
+--- !u!114 &1684962914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1684962910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb14226d7cf88724ba727609584bf6b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1827619672
 GameObject:
   m_ObjectHideFlags: 0

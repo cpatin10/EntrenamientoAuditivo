@@ -14,7 +14,7 @@ public class AnswerManager : MonoBehaviour
 
     // Limit in time for assigning dynamic points
     public static readonly float MINIMUM_ANSWER_TIME = 1f;
-    public static readonly float MAXIMUM_ANSWER_TIME = 10f;
+    public static readonly float MAXIMUM_ANSWER_TIME = 30f;
 
     // Observer pattern. Sets an event for when feedback should be made
     public delegate void GiveFeedback(string keyName);
@@ -97,8 +97,7 @@ public class AnswerManager : MonoBehaviour
         expectedNote = note;
         thereIsQuestion = true;
     }
-
-    // *****************PENDIENTE: almacenar info,
+    
     // Process a given answer by the user when a key is pressed
     private void processAnswer(string inputNote)
     {
@@ -122,10 +121,8 @@ public class AnswerManager : MonoBehaviour
             }
             tellAboutProcessedInput();
 
-            sendAnalytics(correctAnswer, firstNote, expectedNote, inputNote, answerTime);
-
-            // ******************PENDIENTE: almacenar información de tiempo y respuesta
-
+            storeData(correctAnswer, firstNote, expectedNote, inputNote, answerTime);
+            
             thereIsQuestion = false;
         }            
     }    
@@ -219,16 +216,18 @@ public class AnswerManager : MonoBehaviour
         {
             timer.restoreTimer();
             tellAboutQuestionFinished();
+            tellAboutProcessedInput();
             return true;
         }
         return false;
     }
 
+    // Checks whether a question reachs the end (ends given time)
     private void checkEndOfQuestion()
     {
         if (endOfTime())
         {
-            sendAnalytics(false, firstNote, expectedNote, "", MAXIMUM_ANSWER_TIME);
+            storeData(false, firstNote, expectedNote, "", MAXIMUM_ANSWER_TIME);
             thereIsQuestion = false;
         }
     }
@@ -248,14 +247,22 @@ public class AnswerManager : MonoBehaviour
         return EnumInterval.determineInterval(firstNoteID, secondNoteID);
     }
 
-    // Sends to Unity Analytics information about the question/answer
-    private void sendAnalytics(bool correctAnswer, string firstNote, 
+    // Method in charge of storing data in local computer and unity analytics
+    private void storeData(bool correctAnswer, string firstNote,
         string expectedNote, string inputNote, float answerTime)
     {
-        Debug.Log("Entre a la analitica");
 
         Interval expectedInterval = determineIntervalByName(firstNote, expectedNote);
         Interval inputInterval = determineIntervalByName(firstNote, inputNote);
+
+        DataManager.saveSecondLvlAnswer(correctAnswer, (int)expectedInterval, (int)inputInterval, firstNote, expectedNote, inputNote, answerTime);
+        sendAnalytics(correctAnswer, expectedInterval, inputInterval, firstNote, expectedNote, inputNote, answerTime);
+    }
+
+    // Sends to Unity Analytics information about the question/answer
+    private void sendAnalytics(bool correctAnswer, Interval expectedInterval, Interval inputInterval, string firstNote, 
+        string expectedNote, string inputNote, float answerTime)
+    {
 
         var analytics = Analytics.CustomEvent("Respuesta Usuario", new Dictionary<string, object>
         {
@@ -268,7 +275,5 @@ public class AnswerManager : MonoBehaviour
             { "Segunda nota (respondida)", inputNote },
             { "Tiempo de respuesta", answerTime }
         });
-
-        Debug.Log(analytics);
     }
 }

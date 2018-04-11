@@ -77,10 +77,6 @@ public class PointsManager : MonoBehaviour
         {
             
             float points = MAXIMUM_POINTS_TO_OBTAIN / maxAnswerTime * (maxAnswerTime - time);
-
-            Debug.Log(time);
-            Debug.Log(points);
-
             return (uint)points;
         }
     }

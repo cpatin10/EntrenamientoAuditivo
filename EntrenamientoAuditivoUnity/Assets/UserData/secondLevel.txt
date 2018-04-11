@@ -1,0 +1,1 @@
+{"correct":false,"playedInterval":2,"answeredInterval":-1,"firstNote":"C6","expectedNote":"Bb5","inputNote":"G4","time":2.004566192626953}{"correct":false,"playedInterval":2,"answeredInterval":-1,"firstNote":"D5","expectedNote":"C5","inputNote":"","time":30.0}
