@@ -26,8 +26,6 @@ public class AudioManager : MonoBehaviour {
             return;
         }
 
-        DontDestroyOnLoad(gameObject);
-
         notesId = new Dictionary<string, int>(sounds.Length);
 
         for (int i = 0; i < sounds.Length; ++i)

@@ -19,7 +19,4 @@ public class ActivateMusic : MonoBehaviour
 }
 
 
-//Quest = GameObject.Find("Game");
-//ShowQuestion = Quest.GetComponentInParent<MotorGame>();
-//public MotorGame ShowQuestion;
-//public GameObject Quest;
+

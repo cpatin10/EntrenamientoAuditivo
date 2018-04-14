@@ -18,7 +18,6 @@
           <e p="Scripts" t="Include">
             <e p="2DScripts" t="Include">
               <e p="ActivateMusic.cs" t="Include" />
-              <e p="Answers.cs" t="Include" />
               <e p="CheckGround.cs" t="Include" />
               <e p="CheckPlatform.cs" t="Include" />
               <e p="Chronometer.cs" t="Include" />
@@ -28,8 +27,10 @@
               <e p="MainMenu.cs" t="Include" />
               <e p="MenuScript.cs" t="Include" />
               <e p="MotorGame.cs" t="Include" />
+              <e p="MovilPlatform.cs" t="Include" />
               <e p="Paused.cs" t="Include" />
               <e p="PlayerController.cs" t="Include" />
+              <e p="Points.cs" t="Include" />
             </e>
           </e>
         </e>

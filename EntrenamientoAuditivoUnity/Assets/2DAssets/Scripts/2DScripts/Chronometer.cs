@@ -1,47 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Chronometer : MonoBehaviour
+namespace _2DAssets.Scripts._2DScripts
 {
-
-	public GameObject PlayerDistance;
-	public MotorGame GameDistance;
-	public GameObject platform;
-
-	public float time;
-	public Text txtTime;
-	public float distance;
+    public class Chronometer : MonoBehaviour
+    {
+        public float time;
+        public Text txtTime;
 	
-	public GameObject FinalGame;
-
-	// Use this for initialization
-	void Start () {
-		PlayerDistance = GameObject.Find("Game");
-		GameDistance = PlayerDistance.GetComponent<MotorGame>();		
-
-		txtTime.text = "2:00";
-		time = 50;
-	}
+        // Use this for initialization
+        void Start () {
+            txtTime.text = "0:00";
+            time = 0;
+        }
 	
-	void Update () {
-		TimeGame();
+        void Update ()
+        {
+            TimeGame();
+        }
 
-		if (time < 0)
-		{
-			GameDistance.StopGame();
-		}
-	}
-
-	void TimeGame()
-	{
-		distance += Time.deltaTime * GameDistance.Speed;
-		
-		time -= Time.deltaTime;
-		int minutes = (int) time / 60;
-		int seconds = (int) time % 60;
-		txtTime.text = minutes.ToString() + ":" + seconds.ToString().PadLeft(2, '0');
-	}
+        void TimeGame()
+        {		
+            time += Time.deltaTime;
+            int minutes = (int) time / 60;
+            int seconds = (int) time % 60;
+            txtTime.text = minutes.ToString() + ":" + seconds.ToString().PadLeft(2, '0');
+        }
+    }
 }

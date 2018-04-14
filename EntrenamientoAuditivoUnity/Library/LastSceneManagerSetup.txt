@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/2DAssets/Scenes/2DGame/2DLevel3.unity
+  isLoaded: 1
+  isActive: 1

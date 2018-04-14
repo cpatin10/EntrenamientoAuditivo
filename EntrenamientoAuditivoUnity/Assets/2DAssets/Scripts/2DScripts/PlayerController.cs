@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 	public float MaxSpeed = 7f;
 	public float Speed = 9f;
 	public bool Grounded;
-	public float JumpPower = 5f;
+	public float JumpPower = 8f;
 	public bool _jump;
 	
 	private Rigidbody2D _rigidbody;
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 				
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();
-		Restart = GameObject.Find("Water");
+		Restart = GameObject.FindGameObjectWithTag("water");
 		Point = GameObject.Find("Platform");
 		
 		if (Point)
