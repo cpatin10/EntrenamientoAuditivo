@@ -1,16 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
-public class Chronometer : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+namespace _2DAssets.Scripts._2DScripts
+{
+    public class Chronometer : MonoBehaviour
+    {
+        public float time;
+        public Text txtTime;
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        // Use this for initialization
+        void Start () {
+            txtTime.text = "0:00";
+            time = 0;
+        }
+	
+        void Update ()
+        {
+            TimeGame();
+        }
+
+        void TimeGame()
+        {		
+            time += Time.deltaTime;
+            int minutes = (int) time / 60;
+            int seconds = (int) time % 60;
+            txtTime.text = minutes.ToString() + ":" + seconds.ToString().PadLeft(2, '0');
+        }
+    }
 }

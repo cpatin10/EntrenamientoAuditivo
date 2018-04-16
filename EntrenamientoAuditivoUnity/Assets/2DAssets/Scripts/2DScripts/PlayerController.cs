@@ -1,6 +1,9 @@
 ﻿//using System.Collections;
 //using System.Collections.Generic;
+
+using NUnit.Framework.Internal.Execution;
 using UnityEngine;
+using Debug = System.Diagnostics.Debug;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,18 +12,31 @@ public class PlayerController : MonoBehaviour
 	public float MaxSpeed = 7f;
 	public float Speed = 9f;
 	public bool Grounded;
-	public float JumpPower = 10.5f;
-	private bool _jump;
+	public float JumpPower = 8f;
+	public bool _jump;
 	
-
 	private Rigidbody2D _rigidbody;
 	private Animator _animator;
+
+	public GameObject PlayerGame;
+	public GameObject Restart;
+	public GameObject Point;
+	public int countPoint;
 	
 	// Use this for initialization
 	void Start ()
 	{
+		//FinalGame = GameObject.Find("PanelGameOver");
+				
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();
+		Restart = GameObject.FindGameObjectWithTag("water");
+		Point = GameObject.Find("Platform");
+		
+		if (Point)
+		{
+			countPoint++;
+		}
 	}
 	
 	// Update is called once per frame
@@ -75,7 +91,11 @@ public class PlayerController : MonoBehaviour
 	
 	//Detecta cuando el personaje ha desaparecido de la escena y lo reubica 
 	private void OnBecameInvisible()
-	{
-		transform.position = new Vector3(0, 0, 0);
+	{	
+		if (Restart)
+		{
+			transform.position = new Vector3(0, 0, 0);
+		}
 	}
+
 }
