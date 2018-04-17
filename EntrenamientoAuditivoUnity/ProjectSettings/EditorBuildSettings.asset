@@ -47,3 +47,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/2DAssets/Scenes/2DGame/2DMenu.unity
     guid: 492aba42698447449b6a34e213b65bab
+  - enabled: 1
+    path: Assets/Instructions3D.unity
+    guid: 420f00e49a8224046b4e518704278963
