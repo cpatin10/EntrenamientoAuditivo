@@ -12,6 +12,8 @@ namespace _2DAssets.Scripts._2DScripts
 		public GameObject StopPlayer;
 		public GameObject StopTime;
 		public GameObject Question;
+		public GameObject Wrong;
+		public GameObject Correct;
 
 		// Use this for initialization
 		void Start () {
@@ -30,6 +32,12 @@ namespace _2DAssets.Scripts._2DScripts
 		
 			Question = GameObject.Find("PanelQuestion");
 			Question.SetActive(false);
+			
+			Wrong = GameObject.Find("Wrong");
+			Wrong.SetActive(false);
+			
+			Correct = GameObject.Find("Correct");
+			Correct.SetActive(false);
 		}
 
 		public void StopGame()
@@ -49,6 +57,27 @@ namespace _2DAssets.Scripts._2DScripts
 		{
 			Question.SetActive(false);
 		}
+
+		public void CorrectAnswerOn()
+		{
+			Correct.SetActive(true);
+		}
+
+		public void WrongAnswerOn()
+		{
+			Wrong.SetActive(true);
+		}
+		
+		public void CorrectAnswerOff()
+		{
+			Correct.SetActive(false);
+		}
+
+		public void WrongAnswerOff()
+		{
+			Wrong.SetActive(false);
+		}
+
 
 		void SpeedGame()
 		{

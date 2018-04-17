@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace _2DAssets.Scripts._2DScripts
 {
@@ -28,7 +30,8 @@ namespace _2DAssets.Scripts._2DScripts
         private static readonly float SECOND_NOTE_STARTING_TIME = 0.8f;
 
         // Information about the interval that is being played
-        private static string firstNoteName, secondNoteName;
+        public string firstNoteName;
+        public string secondNoteName;
 
         // Determines whether a new interval should be defined or to continue with the current one
         public static bool keepInterval = false;
@@ -38,16 +41,6 @@ namespace _2DAssets.Scripts._2DScripts
         // Determines the maximum and minimum interval that should be used in the game, by default is minor second and major seventh
         [SerializeField] private Interval greatestInterval = Interval.MajorSeventh;
         [SerializeField] private Interval leastInterval = Interval.MinorSecond;
-
-        public PlayerController Player;
-    
-        public MotorGame ShowQuestion;
-        public GameObject Quest;
-
-        public GameObject ButtonMinus;
-        public GameObject ButttonMayor;
-
-        public Points Point;
     
         // Use this for initialization
         void Start()
@@ -60,11 +53,7 @@ namespace _2DAssets.Scripts._2DScripts
             PressKey.OnPressedKey += changeInterval;
             // Subscribes to OnQuestionFinished (from AnswerManager script) method to check when a question is answered by the user
             AnswerManager.OnQuestionFinished += waitAndplayNextInterval;
-        
-            Player = GetComponentInParent<PlayerController>();
-        
-            Quest = GameObject.Find("Game");
-            ShowQuestion = Quest.GetComponentInParent<MotorGame>();
+       
         }
 
         // Called when behaviour becomes inactive
@@ -122,7 +111,7 @@ namespace _2DAssets.Scripts._2DScripts
 
         // Verifies whether there is a subscriber to the tellAboutPlayedSecondNote
         // If there is any tells them that the second note was played
-        private void tellAboutPlayedSecondNote()
+        public void tellAboutPlayedSecondNote()
         {
             PlayedInterval handler = OnPlayedSecondNote;
             if (handler != null)
@@ -146,7 +135,6 @@ namespace _2DAssets.Scripts._2DScripts
 
             tellAboutNewInterval();
             
-            Debug.Log(firstNoteName + " " + secondNoteName);
         }
 
         // Verifies whether there is a subscriber to the OnFirstNoteChange and OnSecondNoteChange
@@ -173,7 +161,7 @@ namespace _2DAssets.Scripts._2DScripts
         }
 
         // Sets the second note according to the given interval starting at the given firstNote
-        private void generateSecondNote(int firstNote, int interval)
+        public void generateSecondNote(int firstNote, int interval)
         {
             int secondNote;
 
@@ -211,62 +199,11 @@ namespace _2DAssets.Scripts._2DScripts
         }
 
         // Sets keepInterval to false, so that next interval is a new one
-        public static void changeInterval()
+        public void changeInterval()
         {
             keepInterval = false;
         }
-
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            if (other.gameObject.CompareTag("Platform"))
-            {
-                DetectedEnterPlatform();
-            }
-            
-            if (other.gameObject.CompareTag("PlatformFinal"))
-            {
-                EndGame();
-            }
-        }
-
-        private void OnCollisionExit2D(Collision2D other)
-        {
-            if (other.gameObject.CompareTag("Platform"))
-            {
-                DetectedExitPlatform();
-            }
-        }
-    
-        public void DetectedEnterPlatform()
-        {
-            playInterval();
-            ShowQuestion.MakeQuestionOn();
-            Player.JumpPower = 0f;
-            Player.Speed = 0f;
-        }
-
-        public void DetectedExitPlatform()
-        {
-            changeInterval();
-        }
-
-        public void ButtonClickMinus()
-        {
-            ShowQuestion.MakeQuestionOff();
-            Player.JumpPower = 10f;
-            Player.Speed = 10f;
-            Point.UpdateScore();
-        }
-
-        public void ButttonClickMayor()
-        {
-           
-        }
-
-        public void EndGame()
-        {
-            ShowQuestion.StopGame();
-        }
+        
     }
 }
     

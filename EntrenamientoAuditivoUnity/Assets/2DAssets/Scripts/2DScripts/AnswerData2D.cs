@@ -6,14 +6,14 @@ public class AnswerData2D {
 
 	public bool correct;
 	public int playedInterval;
-	public int answeredInterval;
+	public string answeredInterval;
 	public string firstNote;
 	public string expectedNote;
 	public float time;
 
 	// Constructor
 	// This class can not be monobehaviour
-	public AnswerData2D(bool correct, int playedInterval, int answeredInterval,
+	public AnswerData2D(bool correct, int playedInterval, string answeredInterval,
 		string firstNote, string expectedNote, float time)
 	{
 		this.correct = correct;

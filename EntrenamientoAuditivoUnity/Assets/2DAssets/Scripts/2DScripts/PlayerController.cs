@@ -3,6 +3,7 @@
 
 using NUnit.Framework.Internal.Execution;
 using UnityEngine;
+using _2DAssets.Scripts._2DScripts;
 using Debug = System.Diagnostics.Debug;
 
 public class PlayerController : MonoBehaviour
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
 	public GameObject Restart;
 	public GameObject Point;
 	public int countPoint;
+
+	public MotorGame motorGame;
 	
 	// Use this for initialization
 	void Start ()
@@ -94,7 +97,7 @@ public class PlayerController : MonoBehaviour
 	{	
 		if (Restart)
 		{
-			transform.position = new Vector3(0, 0, 0);
+			motorGame.StopGame();
 		}
 	}
 

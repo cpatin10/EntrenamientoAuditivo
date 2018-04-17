@@ -18,20 +18,22 @@
           <e p="Scripts" t="Include">
             <e p="2DScripts" t="Include">
               <e p="ActivateMusic.cs" t="Include" />
+              <e p="Answer.cs" t="Include" />
               <e p="AnswerData2D.cs" t="Include" />
               <e p="CheckGround.cs" t="Include" />
               <e p="CheckPlatform.cs" t="Include" />
               <e p="Chronometer.cs" t="Include" />
-              <e p="DataManager2D.cs" t="Include" />
+              <e p="Data.cs" t="Include" />
               <e p="DrawSceneLine.cs" t="Include" />
               <e p="FollowCamera.cs" t="Include" />
               <e p="IntervalPlayer2D.cs" t="Include" />
               <e p="MainMenu.cs" t="Include" />
               <e p="MenuScript.cs" t="Include" />
               <e p="MotorGame.cs" t="Include" />
-              <e p="MovilPlatform.cs" t="Include" />
               <e p="Paused.cs" t="Include" />
+              <e p="PlatformFalling.cs" t="Include" />
               <e p="PlayerController.cs" t="Include" />
+              <e p="PlayInterval.cs" t="Include" />
               <e p="Points.cs" t="Include" />
             </e>
           </e>
