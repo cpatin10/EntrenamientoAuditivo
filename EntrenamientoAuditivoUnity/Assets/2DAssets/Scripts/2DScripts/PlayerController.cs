@@ -1,10 +1,7 @@
 ﻿//using System.Collections;
 //using System.Collections.Generic;
-
-using NUnit.Framework.Internal.Execution;
 using UnityEngine;
 using _2DAssets.Scripts._2DScripts;
-using Debug = System.Diagnostics.Debug;
 
 public class PlayerController : MonoBehaviour
 {
