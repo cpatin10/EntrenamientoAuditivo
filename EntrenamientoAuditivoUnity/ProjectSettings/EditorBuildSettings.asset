@@ -45,7 +45,7 @@ EditorBuildSettings:
     path: Assets/3DSeventh.unity
     guid: 4bab8ad7528b35a45b91f70fd1b3e27e
   - enabled: 1
-    path: Assets/2DAssets/Scenes/2DGame/2DMenu.unity
+    path: Assets/2DAssets/Scenes/2DGame/Menu3D.unity
     guid: 492aba42698447449b6a34e213b65bab
   - enabled: 1
     path: Assets/Instructions3D.unity
