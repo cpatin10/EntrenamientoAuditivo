@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -601,7 +601,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1632557384}
   m_HandleRect: {fileID: 1632557383}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1393,8 +1393,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 683717404}
   m_HandleRect: {fileID: 683717403}
   m_Direction: 2
-  m_Value: 0.5000001
-  m_Size: 0.5316667
+  m_Value: 0.5
+  m_Size: 0.57139885
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
