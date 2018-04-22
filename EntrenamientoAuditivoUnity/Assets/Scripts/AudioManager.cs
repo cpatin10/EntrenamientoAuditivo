@@ -15,18 +15,19 @@ public class AudioManager : MonoBehaviour {
     private Dictionary<string, int> notesId;
     public static AudioManager instance;
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake () {
 
         //Singleton Pattern
-        if (instance == null) {
+        if (instance == null)
+        {
             instance = this;
-        } else {
+        }
+        else
+        {
             Destroy(gameObject);
             return;
         }
-
-        DontDestroyOnLoad(gameObject);
 
         notesId = new Dictionary<string, int>(sounds.Length);
 

@@ -37,8 +37,6 @@ public class PointsManager : MonoBehaviour
             return;
         }
 
-        DontDestroyOnLoad(gameObject);
-
         totalPoints = 0;
         TotalPointsPresentation.totalPoints = 0;
 
