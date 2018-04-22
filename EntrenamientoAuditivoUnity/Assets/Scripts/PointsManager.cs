@@ -40,6 +40,8 @@ public class PointsManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         totalPoints = 0;
+        TotalPointsPresentation.totalPoints = 0;
+
         setTotalPointsText();
         disableObtaindePointsText();
         
@@ -99,6 +101,7 @@ public class PointsManager : MonoBehaviour
     private void addPointsToTotal(uint points)
     {
         totalPoints += points;
+        TotalPointsPresentation.totalPoints = totalPoints;
     }
 
     // Sets the totalPointsText to show current totalPoints
