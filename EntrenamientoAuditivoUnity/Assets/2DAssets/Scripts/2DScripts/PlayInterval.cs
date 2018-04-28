@@ -153,7 +153,7 @@ public class PlayInterval : MonoBehaviour {
 
     public void SaveData()
     {
-        Correct = Correct;
+        //Correct = Correct;
         Debug.Log(Correct);
     }
 }
