@@ -7,7 +7,7 @@ class BuildScript
     static string[] SCENES = FindEnabledEditorScenes();
     
     static string APP_NAME = "EntrenamientoAuditivo";
-    static string TARGET_DIR = "C:/Users/cpatin10/Documents/JenkinsBuild";
+    static string TARGET_DIR = "JenkinsBuild";
 
     static void PerformAllBuilds()
     {
