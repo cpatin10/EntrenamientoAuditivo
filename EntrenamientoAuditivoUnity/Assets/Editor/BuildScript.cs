@@ -7,7 +7,7 @@ class BuildScript
     static string[] SCENES = FindEnabledEditorScenes();
 
     static string APP_NAME = "EntrenamientoAuditivo";
-    static string TARGET_DIR = "target";
+    static string TARGET_DIR = "C:\\Users\\cpatin10\\Documents\\proyecto2-documentacion\\builds";
 
     static void PerformAllBuilds()
     {
