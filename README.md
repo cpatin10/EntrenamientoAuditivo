@@ -1,5 +1,5 @@
 # EntrenamientoAuditivo
-Unity game for ear training
+Juego en Unity para el Entrenamiento Auditivo
 
 # Codificación y desarrollo
 - Unity 2017 Versión 2017.3.0f3
@@ -13,4 +13,8 @@ Unity game for ear training
 - Unity Test Runner (Integrado a Unity 2017)
 
 # Integración continua
-- Jenkins
+- Jenkins Versión 2.107.2
+- Unity3D plugin para Jenkins Versión 1.3
+
+# Documentación
+[Documentos de apoyo](https://github.com/cpatin10/proyecto2-documentacion)
