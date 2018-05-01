@@ -1,0 +1,1 @@
+"C:\Program Files\Unity\Editor\Unity.exe" -quit -batchmode -projectPath "C:\Program Files (x86)\Jenkins\workspace\EntrenamientoAuditivo\EntrenamientoAuditivoUnity" -executeMethod BuildScript.PerformAllBuilds -nographic
