@@ -21,7 +21,7 @@ public class DataManager : MonoBehaviour {
         firstLvlFilePath = Path.Combine(directoryPath, "firstLevel.txt");
     }
 
-    // Saves the given data as json format at the end of the file with secondLvlFilePath
+    // Saves the given data as json format at the end of the file with userDataFilePath
     // In order to do so, stores data in new AnswerData3D object
     static public void saveSecondLvlAnswer(bool correct, int expectedInterval, int inputInterval,
         string firstNote, string expectedNote, string inputNote, float time)
@@ -31,7 +31,7 @@ public class DataManager : MonoBehaviour {
         File.AppendAllText(secondLvlFilePath, jsonString);
     }
     
-    // Saves the given data as json format at the end of the file with secondLvlFilePath
+    // Saves the given data as json format at the end of the file with userDataFilePath
     // In order to do so, stores data in new AnswerData3D object
     static public void saveFirstLvlAnswer(bool correct, int expectedInterval,
         string firstNote, string expectedNote, string inputNote, float time)
