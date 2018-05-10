@@ -285,7 +285,7 @@ namespace GameAnalyticsSDK.Utilities
 				if(c == '"')
 				{
 					complete = true;
-					break;
+					//break;
 				}
 				else if(c == '\\')
 				{
