@@ -119,6 +119,7 @@
             <e p="PianoDescription.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
             <e p="PressKey.cs" t="Include" />
+            <e p="TotalPointsPresentation.cs" t="Include" />
           </e>
           <e p="AudioManager.cs" t="Include" />
           <e p="Classes" t="Include">

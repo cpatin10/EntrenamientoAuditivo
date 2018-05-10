@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a0c5f14-704b-4094-9625-6152b4026856" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EntrenamientoAuditivoUnity/.idea/contentModel.xml" afterPath="$PROJECT_DIR$/.idea/.idea.EntrenamientoAuditivoUnity/.idea/contentModel.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EntrenamientoAuditivoUnity/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.EntrenamientoAuditivoUnity/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Assets/2DAssets/Scenes/2DGame/2DLevel1.unity" afterPath="$PROJECT_DIR$/Assets/2DAssets/Scenes/2DGame/2DLevel1.unity" />
-      <change beforePath="$PROJECT_DIR$/Assets/2DAssets/Scenes/2DGame/Menu2D.unity" afterPath="$PROJECT_DIR$/Assets/2DAssets/Scenes/2DGame/Menu2D.unity" />
-      <change beforePath="$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/AnswerData2D.cs" afterPath="$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/AnswerData2D.cs" />
-      <change beforePath="$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/DataManager2D.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/DataManager2D.cs.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/IntervalPlayer2D.cs" afterPath="$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/IntervalPlayer2D.cs" />
-      <change beforePath="$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/MotorGame.cs" afterPath="$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/MotorGame.cs" />
-      <change beforePath="$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/MovilPlatform.cs" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/MovilPlatform.cs.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/PlayerController.cs" afterPath="$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/PlayerController.cs" />
+      <change beforePath="$PROJECT_DIR$/Assets/Images/Resources/GameAnalytics.meta" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Assets/UserData/secondLevel.txt" afterPath="$PROJECT_DIR$/Assets/UserData/secondLevel.txt" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,6 +15,24 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="FollowCamera.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/FollowCamera.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1522614159992" expanded="true" signature="0:63" ph="/* using System.Collections; ... */" />
+                <marker date="1522614159992" expanded="true" signature="125:779" ph="{...}" />
+                <marker date="1522614159992" expanded="true" signature="313:777" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -55,6 +67,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/3DScripts/PressKey.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/MotorGame.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/Data.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/FollowCamera.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/3DScripts/AnswerManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/PlatformFalling.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/Answer.cs" root0="FORCE_HIGHLIGHTING" />
@@ -116,41 +129,6 @@
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="EntrenamientoAuditivoUnity (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="EntrenamientoAuditivoUnity (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Assembly-CSharp" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="EntrenamientoAuditivoUnity (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Assembly-CSharp" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Assets" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="EntrenamientoAuditivoUnity (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Assembly-CSharp" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Assets" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="2DAssets" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="EntrenamientoAuditivoUnity (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Assembly-CSharp" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Assets" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="2DAssets" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Scripts" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="EntrenamientoAuditivoUnity (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Assembly-CSharp" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Assets" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="2DAssets" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Scripts" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="2DScripts" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -206,11 +184,12 @@
       <workItem from="1523913099139" duration="16491000" />
       <workItem from="1523977418460" duration="6191000" />
       <workItem from="1523983710229" duration="2973000" />
+      <workItem from="1525725009396" duration="553000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39972000" />
+    <option name="totallyTimeSpent" value="40525000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -257,5 +236,19 @@
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Assets/2DAssets/Scripts/2DScripts/FollowCamera.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1522614159992" expanded="true" signature="0:63" ph="/* using System.Collections; ... */" />
+            <marker date="1522614159992" expanded="true" signature="125:779" ph="{...}" />
+            <marker date="1522614159992" expanded="true" signature="313:777" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
