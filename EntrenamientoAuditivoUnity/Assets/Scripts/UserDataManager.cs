@@ -16,8 +16,6 @@ public class UserDataManager : MonoBehaviour {
         directoryPath = Path.Combine(Application.dataPath, "Users");
         Directory.CreateDirectory(directoryPath);
         userDataFilePath = Path.Combine(directoryPath, "users.txt");
-
-        Debug.Log(directoryPath);
     }
 
     // Saves the given data as json format at the end of the file with userDataFilePath
