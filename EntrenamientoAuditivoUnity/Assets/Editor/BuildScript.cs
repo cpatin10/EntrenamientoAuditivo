@@ -5,7 +5,7 @@ using System.Collections.Generic;
 class BuildScript
 {
     static string[] SCENES = FindEnabledEditorScenes();
-
+    
     static string APP_NAME = "EntrenamientoAuditivo";
     static string TARGET_DIR = "JenkinsBuild";
 
