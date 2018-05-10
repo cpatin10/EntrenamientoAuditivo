@@ -28,6 +28,9 @@ public class UserCreation : MonoBehaviour {
         {
             setWarningText("Por favor ingresa un nombre");
         }
+        else if (UserDataManager.usernameExists(username)) {
+            setWarningText("Nombre ya existe, por favor escoge uno nuevo");
+        }
         else
         {
             saveUser();

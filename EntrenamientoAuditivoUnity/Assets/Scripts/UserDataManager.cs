@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
+
+// based on https://www.youtube.com/watch?v=Z_hJYKv6uO0&t=434s
 
 public class UserDataManager : MonoBehaviour {
 
@@ -23,7 +26,39 @@ public class UserDataManager : MonoBehaviour {
     public static void saveUser(string username)
     {
         UserData data = new UserData(username);
-        string jsonString = JsonUtility.ToJson(data);
+        string jsonString = JsonUtility.ToJson(data) + " ";
         File.AppendAllText(userDataFilePath, jsonString);
     }
+
+    // determines if a given username was already in use
+    public static bool usernameExists (string username)
+    {
+        string usersFile = loadUsers();
+        username = "\"" + username + "\"";
+        if (usersFile.Contains(username))
+        {
+            return true;
+        }
+        return false;
+
+        /*
+        string[] stringSeparators = new string[] { " " };
+        string usersFile = loadUsers();
+        string[] usersJson = usersFile.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
+        */
+
+    }
+
+    // load file storing users into a string
+    private static string loadUsers()
+    {
+        if (!File.Exists(userDataFilePath))
+        {
+            return "";
+        }
+        string jsonString = File.ReadAllText(userDataFilePath);
+        return jsonString;
+    }
+
+
 }
