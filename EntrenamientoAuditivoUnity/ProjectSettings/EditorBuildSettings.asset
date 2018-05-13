@@ -59,3 +59,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/2DAssets/Scenes/2DGame/EndGame3D.unity
     guid: 56ef8524d4b07834abcc63f4d9c54846
+  - enabled: 1
+    path: Assets/UserNameInput.unity
+    guid: bcce2c1f6394fda44b4a4dd9e34965ec

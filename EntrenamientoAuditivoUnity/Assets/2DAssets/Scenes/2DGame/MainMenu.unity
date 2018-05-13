@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 112323012}
   - component: {fileID: 112323011}
   m_Layer: 5
-  m_Name: Menu2D3D
+  m_Name: UserNameInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
