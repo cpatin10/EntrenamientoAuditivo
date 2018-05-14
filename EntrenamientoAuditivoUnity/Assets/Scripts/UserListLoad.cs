@@ -15,35 +15,32 @@ public class UserListLoad : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        usernames = UserDataManager.getUsersList();
-        UserDataManager.printList(usernames);
-
+        retreiveUsernames();
         createButtons();
     }
 
-    // Update is called once per frame
-    void Update () {
-
+    private void retreiveUsernames ()
+    {
+        usernames = UserDataManager.getUsersList();
     }
 
     private void createButtons ()
     {
-        for (int i = 0; i < 25; i++)
+        foreach (string username in usernames)
         {
             GameObject goButton = (GameObject)Instantiate(buttonPrefab);
             goButton.transform.SetParent(ParentPanel, false);
             goButton.transform.localScale = new Vector3(1, 1, 1);
 
             Button tempButton = goButton.GetComponent<Button>();
-            int tempInt = i;
 
-            tempButton.GetComponentInChildren<Text>().text = "" + i;
+            tempButton.GetComponentInChildren<Text>().text = username;
 
-            tempButton.onClick.AddListener(() => ButtonClicked(tempInt));
+            tempButton.onClick.AddListener(() => ButtonClicked(username));
         }
     }
 
-    void ButtonClicked(int buttonNo)
+    void ButtonClicked(string buttonNo)
     {
         Debug.Log("Button clicked = " + buttonNo);
     }
