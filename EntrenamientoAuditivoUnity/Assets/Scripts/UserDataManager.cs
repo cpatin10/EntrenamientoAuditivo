@@ -33,20 +33,57 @@ public class UserDataManager : MonoBehaviour {
     // determines if a given username was already in use
     public static bool usernameExists (string username)
     {
-        string usersFile = loadUsers();
-        username = "\"" + username + "\"";
-        if (usersFile.Contains(username))
+        string[] users = getUsersList();
+        foreach (string user in users)
         {
-            return true;
+            if (String.Equals(user, username))
+            {
+                return true;
+            }
         }
         return false;
+    }
 
-        /*
-        string[] stringSeparators = new string[] { " " };
+    public static string[] getUsersList ()
+    {
         string usersFile = loadUsers();
-        string[] usersJson = usersFile.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
-        */
 
+        if (String.Equals(usersFile, ""))
+        {
+            return new string[0];
+        }        
+
+        string[] stringSeparators = new string[] { " " };
+        string[] usersJson = usersFile.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
+        string[] list = new string[usersJson.Length];
+
+        for (int i = 0; i < list.Length; ++i)
+        {
+            list[i] = getUserInRegister(usersJson[i]);
+        }
+
+        return list;
+    }
+
+    // Gets the username in a register
+    private static string getUserInRegister(string register)
+    {
+        int usernameBeginning = register.IndexOf(':') + 2;
+        int usernameEnd = register.LastIndexOf('\"');
+        int usernameLenght = usernameEnd - usernameBeginning;
+
+        string username = register.Substring(usernameBeginning, usernameLenght);
+        return username;
+    }
+
+    // For debugging purposes
+    // prints string array
+    public static void printList(string[] list)
+    {
+        foreach (string user in list)
+        {
+            Debug.Log(user);
+        }
     }
 
     // load file storing users into a string

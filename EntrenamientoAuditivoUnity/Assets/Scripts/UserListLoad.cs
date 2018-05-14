@@ -10,17 +10,19 @@ public class UserListLoad : MonoBehaviour {
     public GameObject buttonPrefab;
     public RectTransform ParentPanel;
 
+    private string[] usernames;
+
     // Use this for initialization
-    void Start () {
-
+    void Start ()
+    {
+        usernames = UserDataManager.getUsersList();
         createButtons();
-
     }
 
     // Update is called once per frame
     void Update () {
-		
-	}
+
+    }
 
     private void createButtons ()
     {
