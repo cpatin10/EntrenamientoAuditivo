@@ -16,6 +16,8 @@ public class UserListLoad : MonoBehaviour {
     void Start ()
     {
         usernames = UserDataManager.getUsersList();
+        UserDataManager.printList(usernames);
+
         createButtons();
     }
 
