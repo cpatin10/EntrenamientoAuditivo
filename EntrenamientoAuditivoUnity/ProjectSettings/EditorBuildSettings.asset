@@ -62,3 +62,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/UserNameInput.unity
     guid: bcce2c1f6394fda44b4a4dd9e34965ec
+  - enabled: 1
+    path: Assets/LoadUser.unity
+    guid: 277d57fa82a1191489449fc872a0c522
