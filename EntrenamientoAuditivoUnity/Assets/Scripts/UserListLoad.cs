@@ -3,15 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Adding buttons dynamically based on https://forum.unity.com/threads/how-to-create-ui-button-dynamically.393160/
+
 public class UserListLoad : MonoBehaviour {
 
     public GameObject buttonPrefab;
-
     public RectTransform ParentPanel;
 
     // Use this for initialization
     void Start () {
 
+        createButtons();
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+		
+	}
+
+    private void createButtons ()
+    {
         for (int i = 0; i < 25; i++)
         {
             GameObject goButton = (GameObject)Instantiate(buttonPrefab);
@@ -21,24 +33,14 @@ public class UserListLoad : MonoBehaviour {
             Button tempButton = goButton.GetComponent<Button>();
             int tempInt = i;
 
+            tempButton.GetComponentInChildren<Text>().text = "" + i;
+
             tempButton.onClick.AddListener(() => ButtonClicked(tempInt));
         }
-
     }
 
     void ButtonClicked(int buttonNo)
     {
         Debug.Log("Button clicked = " + buttonNo);
-    }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
-
-    private void createButton ()
-    {
-        GameObject goButton = (GameObject)Instantiate(buttonPrefab);
-        Button tempButton = goButton.GetComponent<Button>();
     }
 }
