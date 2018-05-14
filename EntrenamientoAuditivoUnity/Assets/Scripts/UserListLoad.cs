@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 // Adding buttons dynamically based on https://forum.unity.com/threads/how-to-create-ui-button-dynamically.393160/
 
@@ -9,6 +10,7 @@ public class UserListLoad : MonoBehaviour {
 
     public GameObject buttonPrefab;
     public RectTransform ParentPanel;
+    public string nextScene;
 
     private string[] usernames;
 
@@ -19,11 +21,13 @@ public class UserListLoad : MonoBehaviour {
         createButtons();
     }
 
+    // gets the usernames array saved in memory
     private void retreiveUsernames ()
     {
         usernames = UserDataManager.getUsersList();
     }
 
+    // Creates buttons that represent the usernames currently saved
     private void createButtons ()
     {
         foreach (string username in usernames)
@@ -40,8 +44,23 @@ public class UserListLoad : MonoBehaviour {
         }
     }
 
-    void ButtonClicked(string buttonNo)
+    // Logic when one button representing the username is clicked
+    // Sets the username for the game and changes the scene
+    void ButtonClicked(string username)
     {
-        Debug.Log("Button clicked = " + buttonNo);
+        setCurrentUsername(username);
+        ChangeScene();
+    }
+
+    // sets the username for playing the game
+    private void setCurrentUsername(string username)
+    {
+        UserData.setCurrentUserame(username);
+    }
+
+    // changes current scene to defined one
+    private void ChangeScene()
+    {
+        SceneManager.LoadScene(nextScene);
     }
 }

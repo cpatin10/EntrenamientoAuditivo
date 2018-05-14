@@ -53,7 +53,7 @@ public class UserCreation : MonoBehaviour {
     // sets the username for playing the game
     public void setCreatedUserToCurrent ()
     {
-        UserSetUp.setGameUsername(username);
+        UserData.setCurrentUserame(username);
     }
 
     // sets the given string as the message of the warning text
@@ -62,6 +62,7 @@ public class UserCreation : MonoBehaviour {
         warning.text = message;
     }
 
+    // changes current scene to defined one
     public void ChangeScene()
     {
         SceneManager.LoadScene(sceneName);

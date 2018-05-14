@@ -947,6 +947,7 @@ MonoBehaviour:
   buttonPrefab: {fileID: 1176755981638910, guid: 612408ffc6fb65f448227f0e0282e60a,
     type: 2}
   ParentPanel: {fileID: 1861564457}
+  nextScene: Menu2D3D
 --- !u!114 &1352589598
 MonoBehaviour:
   m_ObjectHideFlags: 0
