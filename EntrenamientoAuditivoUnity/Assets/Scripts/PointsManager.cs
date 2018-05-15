@@ -45,12 +45,14 @@ public class PointsManager : MonoBehaviour
         
         // Subscribes to OnPointsAssignmentNeed (from AnswerManager script) to check when points should be assigned
         AnswerManager.OnPointsAssignmentNeed += assignUserPoints;
+        TestAnswerManager.OnPointsAssignmentNeed += assignUserPoints;
     }
 
     private void OnDisable()
     {
         // Unsubscribes to events
         AnswerManager.OnPointsAssignmentNeed -= assignUserPoints;
+        TestAnswerManager.OnPointsAssignmentNeed -= assignUserPoints;
     }
 
     // Assign points to the user according to a given time

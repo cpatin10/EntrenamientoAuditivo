@@ -76,7 +76,8 @@ public class IntervalPlayer : MonoBehaviour
         PressKey.OnPressedKey += changeInterval;
         // Subscribes to OnQuestionFinished (from AnswerManager script) method to check when a question is answered by the user
         AnswerManager.OnQuestionFinished += waitAndplayNextInterval;
-        
+        TestAnswerManager.OnQuestionFinished += waitAndplayNextInterval;
+
     }
 
     // Called when behaviour becomes inactive
@@ -85,6 +86,7 @@ public class IntervalPlayer : MonoBehaviour
         // Unsubscribes to events 
         PressKey.OnPressedKey -= changeInterval;
         AnswerManager.OnQuestionFinished -= waitAndplayNextInterval;
+        TestAnswerManager.OnQuestionFinished -= waitAndplayNextInterval;
     }
 
     // Called when object is clicked

@@ -26,8 +26,10 @@ public class KeyFeedback : MonoBehaviour
 
         //Subscribes to OnProcessedInput (from AnswerManager script) method to know when to show correct answer
         AnswerManager.OnProcessedInput += showCorrect;
+        TestAnswerManager.OnProcessedInput += showCorrect;
         //Subscribes to OnIncorrectInput (from AnswerManager script) method to know when to show incorrect answer
         AnswerManager.OnIncorrectInput += showInCorrect;
+        TestAnswerManager.OnIncorrectInput += showInCorrect;
     }
 
     // Called when behaviour becomes inactive
@@ -36,6 +38,9 @@ public class KeyFeedback : MonoBehaviour
         // Unsubscribes to events
         AnswerManager.OnProcessedInput -= showCorrect;
         AnswerManager.OnIncorrectInput -= showInCorrect;
+
+        TestAnswerManager.OnProcessedInput -= showCorrect;
+        TestAnswerManager.OnIncorrectInput -= showInCorrect;
     }
 
     // Renders the material of the object to use the CORRECT_COLOR to show which was the correct answer
