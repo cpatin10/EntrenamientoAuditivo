@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TestAnswerManager : MonoBehaviour {
 
     // Limit in time for assigning dynamic points
     public static readonly float MINIMUM_ANSWER_TIME = 1f;
     public static readonly float MAXIMUM_ANSWER_TIME = 30f;
+
+    // Number of questions to be made in the test level
+    private static readonly int NUMBER_OF_QUESTIONS = 10;
+
+    // Counter for number of questions made
+    private int questionsCount;
 
     // Observer pattern. Sets an event for when feedback should be made
     public delegate void GiveFeedback(string keyName);
@@ -37,6 +44,9 @@ public class TestAnswerManager : MonoBehaviour {
     // Text for displaying remaining time before next question
     public Text timerText;
 
+    // Next scene after test
+    public string nextScene;
+
     // Use this for initialization
     void Start()
     {
@@ -53,6 +63,7 @@ public class TestAnswerManager : MonoBehaviour {
         }
 
         thereIsQuestion = false;
+        questionsCount = 0;
         //questionFinished = false;
         timer = new Timer();
         disableTimerText();
@@ -95,29 +106,38 @@ public class TestAnswerManager : MonoBehaviour {
     // Process a given answer by the user when a key is pressed
     private void processAnswer(string inputNote)
     {
-        if (thereIsQuestion)
+        if (questionsCount < NUMBER_OF_QUESTIONS)
         {
-            float answerTime;
-            bool correctAnswer;
-
-            disableTimerText();
-            answerTime = timer.getTimeSinceStartTime();
-            tellAboutQuestionFinished();
-
-            correctAnswer = answerMatchs(inputNote);
-            if (correctAnswer)
+            if (thereIsQuestion)
             {
-                tellAboutPointsAssignment(answerTime);
-            }
-            else
-            {
-                tellAboutIncorrectInput(inputNote);
-            }
-            tellAboutProcessedInput();
+                ++questionsCount;
 
-            storeData(correctAnswer, firstNote, expectedNote, inputNote, answerTime);
+                float answerTime;
+                bool correctAnswer;
 
-            thereIsQuestion = false;
+                disableTimerText();
+                answerTime = timer.getTimeSinceStartTime();
+                tellAboutQuestionFinished();
+
+                correctAnswer = answerMatchs(inputNote);
+                if (correctAnswer)
+                {
+                    tellAboutPointsAssignment(answerTime);
+                }
+                else
+                {
+                    tellAboutIncorrectInput(inputNote);
+                }
+                tellAboutProcessedInput();
+
+                storeData(correctAnswer, firstNote, expectedNote, inputNote, answerTime);
+
+                thereIsQuestion = false;
+            }
+        }
+        else
+        {
+            Invoke("ChangeScene", 2.0f);
         }
     }
 
@@ -250,5 +270,11 @@ public class TestAnswerManager : MonoBehaviour {
         Interval inputInterval = determineIntervalByName(firstNote, inputNote);
 
         DataManager.saveSecondLvlAnswer(correctAnswer, (int)expectedInterval, (int)inputInterval, firstNote, expectedNote, inputNote, answerTime);
+    }
+
+    // changes current scene to defined one
+    private void ChangeScene()
+    {
+        SceneManager.LoadScene(nextScene);
     }
 }
