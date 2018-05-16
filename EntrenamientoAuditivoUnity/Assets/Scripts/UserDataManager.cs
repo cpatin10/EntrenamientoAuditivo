@@ -38,7 +38,7 @@ public class UserDataManager : MonoBehaviour {
         string[] users = getUsersList();
         foreach (string user in users)
         {
-            if (String.Equals(user, username))
+            if (String.Equals(user, username, StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
