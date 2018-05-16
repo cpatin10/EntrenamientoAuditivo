@@ -17,8 +17,6 @@ public class DataManager : MonoBehaviour {
         directoryPath = Path.Combine(Application.dataPath, UserDataManager.USERS_DIRECTORY_NAME);
         directoryPath = Path.Combine(directoryPath, UserData.getCurrentUsername());
         Directory.CreateDirectory(directoryPath);
-
-        Debug.Log(directoryPath);
       
         secondLvlFilePath = Path.Combine(directoryPath, "secondLevel.txt");
         firstLvlFilePath = Path.Combine(directoryPath, "firstLevel.txt");
