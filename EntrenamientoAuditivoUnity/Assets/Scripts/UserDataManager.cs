@@ -12,11 +12,13 @@ public class UserDataManager : MonoBehaviour {
     private static string directoryPath;
     private static string userDataFilePath;
 
+    public static readonly string USERS_DIRECTORY_NAME = "Users";
+
     private void Awake()
     {
         // Creates if it does not exist directory to hold the user data
         // it will store in root app directory
-        directoryPath = Path.Combine(Application.dataPath, "Users");
+        directoryPath = Path.Combine(Application.dataPath, USERS_DIRECTORY_NAME);
         Directory.CreateDirectory(directoryPath);
         userDataFilePath = Path.Combine(directoryPath, "users.txt");
     }

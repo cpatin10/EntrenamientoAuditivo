@@ -14,8 +14,11 @@ public class DataManager : MonoBehaviour {
     {
         // Creates if it does not exist directory to hold the user data
         // it will store in root app directory
-        directoryPath = Path.Combine(Application.dataPath, "UserData");
+        directoryPath = Path.Combine(Application.dataPath, UserDataManager.USERS_DIRECTORY_NAME);
+        directoryPath = Path.Combine(directoryPath, UserData.getCurrentUsername());
         Directory.CreateDirectory(directoryPath);
+
+        Debug.Log(directoryPath);
       
         secondLvlFilePath = Path.Combine(directoryPath, "secondLevel.txt");
         firstLvlFilePath = Path.Combine(directoryPath, "firstLevel.txt");
