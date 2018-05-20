@@ -54,7 +54,8 @@ public class IntervalPlayer : MonoBehaviour
 
     // For handling the probability of each interval
     [SerializeField] private bool dynamicProbability;
-    private Dictionary<Interval, double> intervalProbability;
+    private Dictionary<Interval, float> intervalProbability;
+    private static readonly float MAX_PROBABILITY = 100f;
 
     // Use this for initialization
     void Start()
@@ -171,7 +172,12 @@ public class IntervalPlayer : MonoBehaviour
 
         int firstNote = Random.Range(0, totalSounds); // between 0 and totalSounds-1
         firstNoteName = audioManager.GetSoundByID(firstNote).name;
-        int interval = Random.Range((int)leastInterval, (int)greatestInterval + 1);
+
+        // ************************************ BORRAR
+        //int interval = Random.Range((int)leastInterval, (int)greatestInterval + 1); // between leastInterval and greatestInterval
+        //
+
+        int interval = determineIntervalToUse();
         generateSecondNote(firstNote, interval);
 
         tellAboutNewInterval();
@@ -249,7 +255,7 @@ public class IntervalPlayer : MonoBehaviour
     {
         int numberOfIntervals = (int)greatestInterval - (int)leastInterval + 1;
 
-        intervalProbability = new Dictionary<Interval, double>();
+        intervalProbability = new Dictionary<Interval, float>();
 
         if (dynamicProbability)
         {
@@ -258,13 +264,76 @@ public class IntervalPlayer : MonoBehaviour
         else
         {
             // All intervals are given the same probability
-            double probability = 100d / numberOfIntervals;
-            for (int i = (int)leastInterval; i <= (int)greatestInterval; ++i)
+            float probability = MAX_PROBABILITY / numberOfIntervals;
+            float startingProbabilityPoint = probability;
+
+            for (int i = (int)leastInterval; i < (int)greatestInterval; ++i)
             {
-                intervalProbability.Add((Interval)i, probability);
+                intervalProbability.Add((Interval)i, startingProbabilityPoint);
+                startingProbabilityPoint += probability;
             }
+
+            intervalProbability.Add(greatestInterval, MAX_PROBABILITY);
+
+            //foreach (KeyValuePair<Interval, float> kvp in intervalProbability)
+            //{
+            //    //textBox3.Text += ("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+            //    Debug.Log("" + kvp.Key + " " + kvp.Value);
+            //}
         }
     }
 
+    // Determines which interval to use according to the probabilities stored in the intervalProbability dictionary
+    // if interval cannot be determined returns -1
+    private int determineIntervalToUse()
+    {
+        float random = Random.Range(0f, MAX_PROBABILITY);
+
+        if (intervalProbability.ContainsKey(Interval.MinorSecond) && random <= intervalProbability[Interval.MinorSecond])
+        {
+            return (int)Interval.MinorSecond;
+        } 
+        else if (intervalProbability.ContainsKey(Interval.MajorSecond) && random <= intervalProbability[Interval.MajorSecond])
+        {
+            return (int)Interval.MajorSecond;
+        }
+        else if (intervalProbability.ContainsKey(Interval.MinorThird) && random <= intervalProbability[Interval.MinorThird])
+        {
+            return (int)Interval.MinorThird;
+        }
+        else if (intervalProbability.ContainsKey(Interval.MajorThird) && random <= intervalProbability[Interval.MajorThird])
+        {
+            return (int)Interval.MajorThird;
+        }
+        else if (intervalProbability.ContainsKey(Interval.PerfectFourth) && random <= intervalProbability[Interval.PerfectFourth])
+        {
+            return (int)Interval.PerfectFourth;
+        }
+        else if (intervalProbability.ContainsKey(Interval.AugmentedFourth) && random <= intervalProbability[Interval.AugmentedFourth])
+        {
+            return (int)Interval.AugmentedFourth;
+        }
+        else if (intervalProbability.ContainsKey(Interval.PerfectFifth) && random <= intervalProbability[Interval.PerfectFifth])
+        {
+            return (int)Interval.PerfectFifth;
+        }
+        else if (intervalProbability.ContainsKey(Interval.MinorSixth) && random <= intervalProbability[Interval.MinorSixth])
+        {
+            return (int)Interval.MinorSixth;
+        }
+        else if (intervalProbability.ContainsKey(Interval.MajorSixth) && random <= intervalProbability[Interval.MajorSixth])
+        {
+            return (int)Interval.MajorSixth;
+        }
+        else if (intervalProbability.ContainsKey(Interval.MinorSeventh) && random <= intervalProbability[Interval.MinorSeventh])
+        {
+            return (int)Interval.MinorSeventh;
+        }
+        else if (intervalProbability.ContainsKey(Interval.MajorSeventh) && random <= intervalProbability[Interval.MajorSeventh])
+        {
+            return (int)Interval.MajorSeventh;
+        }
+        return -1;
+    }
 }
 
