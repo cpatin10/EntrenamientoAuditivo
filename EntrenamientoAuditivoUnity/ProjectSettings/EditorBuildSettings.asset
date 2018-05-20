@@ -65,3 +65,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/LoadUser.unity
     guid: 277d57fa82a1191489449fc872a0c522
+  - enabled: 1
+    path: Assets/TestLevel.unity
+    guid: e674f1cb43841734f9fa8f07b273c476

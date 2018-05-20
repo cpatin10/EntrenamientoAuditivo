@@ -10,8 +10,6 @@ using UnityEngine.Analytics;
 
 public class AnswerManager : MonoBehaviour
 {
-    // ************* PENDIENTE: los limites de tiempo deben cambiar de acuerdo a la analítica
-
     // Limit in time for assigning dynamic points
     public static readonly float MINIMUM_ANSWER_TIME = 1f;
     public static readonly float MAXIMUM_ANSWER_TIME = 30f;

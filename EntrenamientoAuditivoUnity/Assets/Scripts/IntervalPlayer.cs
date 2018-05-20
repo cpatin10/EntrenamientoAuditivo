@@ -52,6 +52,10 @@ public class IntervalPlayer : MonoBehaviour
     [SerializeField] private Interval greatestInterval = Interval.MajorSeventh;
     [SerializeField] private Interval leastInterval = Interval.MinorSecond;
 
+    // For handling the probability of each interval
+    [SerializeField] private bool dynamicProbability;
+    private Dictionary<Interval, double> intervalProbability;
+
     // Use this for initialization
     void Start()
     {
@@ -69,6 +73,8 @@ public class IntervalPlayer : MonoBehaviour
         audioManager = FindObjectOfType<AudioManager>();
         totalSounds = audioManager.sounds.Length;
         reproducing = false;
+
+        setIntervalsProbabilities();
 
         renderer = GetComponent<Renderer>();
 
@@ -236,6 +242,28 @@ public class IntervalPlayer : MonoBehaviour
     private static void changeInterval()
     {
         keepInterval = false;
+    }
+
+    // Defines probability for each interval and stores it in the intervalProbability dictionary
+    private void setIntervalsProbabilities()
+    {
+        int numberOfIntervals = (int)greatestInterval - (int)leastInterval + 1;
+
+        intervalProbability = new Dictionary<Interval, double>();
+
+        if (dynamicProbability)
+        {
+            // implements interval probabilities when they are to change 
+        }
+        else
+        {
+            // All intervals are given the same probability
+            double probability = 100d / numberOfIntervals;
+            for (int i = (int)leastInterval; i <= (int)greatestInterval; ++i)
+            {
+                intervalProbability.Add((Interval)i, probability);
+            }
+        }
     }
 
 }
