@@ -173,10 +173,6 @@ public class IntervalPlayer : MonoBehaviour
         int firstNote = Random.Range(0, totalSounds); // between 0 and totalSounds-1
         firstNoteName = audioManager.GetSoundByID(firstNote).name;
 
-        // ************************************ BORRAR
-        //int interval = Random.Range((int)leastInterval, (int)greatestInterval + 1); // between leastInterval and greatestInterval
-        //
-
         int interval = determineIntervalToUse();
         generateSecondNote(firstNote, interval);
 
@@ -253,13 +249,15 @@ public class IntervalPlayer : MonoBehaviour
     // Defines probability for each interval and stores it in the intervalProbability dictionary
     private void setIntervalsProbabilities()
     {
+        intervalProbability.Clear();
+
         int numberOfIntervals = (int)greatestInterval - (int)leastInterval + 1;
 
         intervalProbability = new Dictionary<Interval, float>();
 
         if (dynamicProbability)
         {
-            // implements interval probabilities when they are to change 
+            defineDynamicProbabilities();
         }
         else
         {
@@ -282,6 +280,26 @@ public class IntervalPlayer : MonoBehaviour
             //}
         }
     }
+
+    private void defineDynamicProbabilities()
+    {
+        float sumProbabilities = 0f;
+        float probability = 0f;
+
+        for (int i = (int)leastInterval; i <= (int)greatestInterval; ++ i)
+        {
+            sumProbabilities += Helpers.globalIntervalProbabilities[(Interval)i];
+        }
+
+        for (int i = (int)leastInterval; i < (int)greatestInterval; ++i)
+        {
+            probability += Helpers.globalIntervalProbabilities[(Interval)i] / sumProbabilities * 100;
+            intervalProbability.Add((Interval)i, probability);
+        }
+
+        intervalProbability.Add(greatestInterval, MAX_PROBABILITY);
+    }
+
 
     // Determines which interval to use according to the probabilities stored in the intervalProbability dictionary
     // if interval cannot be determined returns -1
