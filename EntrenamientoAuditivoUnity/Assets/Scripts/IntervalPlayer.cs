@@ -162,8 +162,6 @@ public class IntervalPlayer : MonoBehaviour
         }
     }
 
-    //*********PENDIENTE: la generación de intervalo debe cambiar de acuerdo a los datos recolectados
-
     // Defines the interval to reproduce
     // Sets the type of interval and the first and second note id (in sounds array) that defines the interval
     private void defineInterval()
@@ -249,9 +247,7 @@ public class IntervalPlayer : MonoBehaviour
     // Defines probability for each interval and stores it in the intervalProbability dictionary
     private void setIntervalsProbabilities()
     {
-        intervalProbability.Clear();
-
-        int numberOfIntervals = (int)greatestInterval - (int)leastInterval + 1;
+        intervalProbability.Clear();        
 
         intervalProbability = new Dictionary<Interval, float>();
 
@@ -261,43 +257,51 @@ public class IntervalPlayer : MonoBehaviour
         }
         else
         {
-            // All intervals are given the same probability
-            float probability = MAX_PROBABILITY / numberOfIntervals;
-            float startingProbabilityPoint = probability;
-
-            for (int i = (int)leastInterval; i < (int)greatestInterval; ++i)
-            {
-                intervalProbability.Add((Interval)i, startingProbabilityPoint);
-                startingProbabilityPoint += probability;
-            }
-
-            intervalProbability.Add(greatestInterval, MAX_PROBABILITY);
-
-            //foreach (KeyValuePair<Interval, float> kvp in intervalProbability)
-            //{
-            //    //textBox3.Text += ("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
-            //    Debug.Log("" + kvp.Key + " " + kvp.Value);
-            //}
+            defineStandardProbabilities();
         }
     }
 
-    private void defineDynamicProbabilities()
+    // Defines the intervalProbability dictionary with the same probability to all intervals used in the game
+    private void defineStandardProbabilities()
     {
-        float sumProbabilities = 0f;
-        float probability = 0f;
+        int numberOfIntervals = (int)greatestInterval - (int)leastInterval + 1;
 
-        for (int i = (int)leastInterval; i <= (int)greatestInterval; ++ i)
-        {
-            sumProbabilities += Helpers.globalIntervalProbabilities[(Interval)i];
-        }
+        float probability = MAX_PROBABILITY / numberOfIntervals;
+        float startingProbabilityPoint = probability;
 
         for (int i = (int)leastInterval; i < (int)greatestInterval; ++i)
         {
-            probability += Helpers.globalIntervalProbabilities[(Interval)i] / sumProbabilities * 100;
-            intervalProbability.Add((Interval)i, probability);
+            intervalProbability.Add((Interval)i, startingProbabilityPoint);
+            startingProbabilityPoint += probability;
         }
 
         intervalProbability.Add(greatestInterval, MAX_PROBABILITY);
+
+        //foreach (KeyValuePair<Interval, float> kvp in intervalProbability)
+        //{
+        //    //textBox3.Text += ("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+        //    Debug.Log("" + kvp.Key + " " + kvp.Value);
+        //}
+    }
+
+    // Defines the intervalProbability dictionary with the probability to all intervals used in the game according to the set probabilities
+    private void defineDynamicProbabilities()
+    {
+        //float sumProbabilities = 0f;
+        //float probability = 0f;
+
+        //for (int i = (int)leastInterval; i <= (int)greatestInterval; ++ i)
+        //{
+        //    sumProbabilities += Helpers.globalIntervalProbabilities[(Interval)i];
+        //}
+
+        //for (int i = (int)leastInterval; i < (int)greatestInterval; ++i)
+        //{
+        //    probability += Helpers.globalIntervalProbabilities[(Interval)i] / sumProbabilities * 100;
+        //    intervalProbability.Add((Interval)i, probability);
+        //}
+
+        //intervalProbability.Add(greatestInterval, MAX_PROBABILITY);
     }
 
 
